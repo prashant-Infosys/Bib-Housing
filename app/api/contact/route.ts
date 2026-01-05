@@ -5,6 +5,14 @@ export async function POST(req: Request) {
   try {
     const data = await req.json();
 
+    // Verify data exists before sending
+    if (!data.name || !data.message) {
+      return NextResponse.json(
+        { success: false, error: "Missing required fields" },
+        { status: 400 }
+      );
+    }
+
     const result = await sendContactEmail(data);
 
     if (!result.success) {

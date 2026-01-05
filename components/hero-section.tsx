@@ -11,29 +11,51 @@ import { buttonVariants } from "./ui/button";
    ----------------------------- */
 const PROJECTS = [
   {
-    id: "palm-hills",
-    name: "Palm Hills",
-    developer: "NKCPL Group",
+    id: "assotech-hills-upcoming-001",
+    name: "Assotech Hills",
+    developer: "Assotech Group",
     priceRange: "₹50.6L – ₹1Cr",
     heroBg: "/palm-hill-bg.jpg",
     coverImage: "/palm-hill.jpg",
   },
   {
-    id: "green-meadows",
-    name: "Green Meadows",
-    developer: "SRS Builders",
-    priceRange: "₹42L – ₹78L",
-    heroBg: "/hero-2-bg.jpg",
-    coverImage: "/hero-2.jpg",
+    id: "faii-residency-upcoming-010",
+    name: "Faii Residency",
+    developer: "Faquiha Group",
+    priceRange: "₹50.6L – ₹1Cr",
+    heroBg: "https://ik.imagekit.io/rrmbppkq8/bib/faii-residency/a%20(1).jpg",
+    coverImage: "https://ik.imagekit.io/rrmbppkq8/bib/faii-residency/a%20(1).jpg",
   },
   {
-    id: "skyline-residency",
-    name: "Skyline Residency",
-    developer: "Urban Nest",
-    priceRange: "₹89L – ₹1.35Cr",
-    heroBg: "/hero-3-bg.jpg",
-    coverImage: "/hero-3.jpg",
+    id: "one-residency-upcoming-022",
+    name: "One Residency",
+    developer: "Pratistha Buildcon",
+    priceRange: "₹50.6L – ₹1Cr",
+    heroBg: "https://ik.imagekit.io/rrmbppkq8/bib/one-residencies/a%20(1).jpg",
+    coverImage: "https://ik.imagekit.io/rrmbppkq8/bib/one-residencies/a%20(1).jpg",
   },
+  {
+    id: "oak-forest-upcoming-021",
+    name: "Oak Forest",
+    developer: "NKCPL Group",
+    priceRange: "₹50.6L – ₹1Cr",
+    heroBg: "https://ik.imagekit.io/rrmbppkq8/bib/oak-forest/a%20(1).jpg",
+    coverImage: "https://ik.imagekit.io/rrmbppkq8/bib/oak-forest/a%20(1).jpg",
+  },{
+    id: "utopian-heights-upcoming-035",
+    name: "Utopian Heights",
+    developer: "AHDLP Group",
+    priceRange: "₹50.6L – ₹1Cr",
+    heroBg: "https://ik.imagekit.io/rrmbppkq8/bib/utopian-heights/a%20(1).jpg",
+    coverImage: "https://ik.imagekit.io/rrmbppkq8/bib/utopian-heights/a%20(1).jpg",
+  },{
+    id: "vicint-marqius-upcoming-037",
+    name: "Vicint Marqius",
+    developer: "Vicint Homes Pvt Ltd",
+    priceRange: "₹50.6L – ₹1Cr",
+    heroBg: "https://ik.imagekit.io/rrmbppkq8/bib/vicint-marquis/a%20(1).jpg",
+    coverImage: "https://ik.imagekit.io/rrmbppkq8/bib/vicint-marquis/a%20(1).jpg",
+  }
 ];
 
 const AUTO_PLAY_MS = 5000;
@@ -243,34 +265,39 @@ export default function HeroSection() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -16 }}
                   transition={{ duration: 0.35 }}
-                  className="flex items-center gap-4 rounded-xl bg-white/95 px-5 py-4 shadow-2xl backdrop-blur-sm"
                 >
-                  <div className="flex-1 min-w-0">
-                    <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
-                      Featured Project
-                    </p>
-                    <h3 className="mt-1 text-lg font-semibold text-slate-900 truncate">
-                      {active.name}
-                    </h3>
-                    <p className="text-sm text-slate-500 truncate">
-                      {active.developer}
-                    </p>
-                    <p className="mt-2 text-sm font-semibold text-slate-900">
-                      {active.priceRange}
-                    </p>
-                  </div>
-                  <div className="relative h-20 w-24 shrink-0 overflow-hidden rounded-2xl">
-                    <Image
-                      src={active.coverImage}
-                      alt={active.name}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
+                  {/* Clickable Card linking to /properties/[slug] */}
+                  <Link
+                    href={`/properties/${active.id}`}
+                    className="flex items-center gap-4 rounded-xl bg-white/95 px-5 py-4 shadow-2xl backdrop-blur-sm hover:bg-white transition-all group cursor-pointer border border-transparent hover:border-rose-100"
+                  >
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
+                        Featured Project
+                      </p>
+                      <h3 className="mt-1 text-lg font-semibold text-slate-900 truncate group-hover:text-rose-700 transition-colors">
+                        {active.name}
+                      </h3>
+                      <p className="text-sm text-slate-500 truncate">
+                        {active.developer}
+                      </p>
+                      <p className="mt-2 text-sm font-semibold text-slate-900">
+                        {active.priceRange}
+                      </p>
+                    </div>
+                    <div className="relative h-20 w-24 shrink-0 overflow-hidden rounded-2xl">
+                      <Image
+                        src={active.coverImage}
+                        alt={active.name}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                    </div>
+                  </Link>
                 </motion.div>
               </AnimatePresence>
 
-              {/* Dots control */}
+              {/* Dots control (Independent of the Link) */}
               <div className="mt-3 flex justify-end gap-2">
                 {PROJECTS.map((project, idx) => (
                   <button

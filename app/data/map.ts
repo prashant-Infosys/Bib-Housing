@@ -1,0 +1,47 @@
+// app/data/map.ts
+
+export const PROPERTY_MAPS = {
+  "advaya-enclave": "https://maps.app.goo.gl/PiY646a4C5bwPpzw8",
+  "amoda-green": "https://maps.app.goo.gl/8TTfephi1eYAHmkY6",
+  "aprajita-sports-city": "https://maps.app.goo.gl/oUPaXZKR3VJLcqCDA",
+  "aryan-enclave": "https://maps.app.goo.gl/HqpgrVYfsyY8WcM19",
+  "assotech-hills": "https://maps.app.goo.gl/e5aBdCJGMQZx7tfF8",
+  "capital-garden": "https://maps.app.goo.gl/HL7e5NkVurk66U71A",
+  "diamond-city": "https://maps.app.goo.gl/hhMCc4ZZZvfZ4nR59",
+  "emerald-heights": "https://maps.app.goo.gl/5G6iP7W8JwG78QgD7",
+  "faii-residency": "https://maps.app.goo.gl/NDv8XcHky9LhcSuVA",
+  "ganpati-solitaire": "https://maps.app.goo.gl/advjsfUYwJmNE8TG7",
+  "garden-valley": "https://maps.app.goo.gl/JnJQHjayTNvG1ERh6",
+  "golden-view": "https://maps.app.goo.gl/EMsbThFbF1cbbkKs7",
+  "haider-city": "https://maps.app.goo.gl/oZKSvyz1MALHMZp27",
+  "ivy-towers": "https://maps.app.goo.gl/MbsWusFJT7yo22ARA",
+  "jagannath-garden": "https://maps.app.goo.gl/XHUGUq5K5h9r2BCs5",
+  "kailasa": "https://maps.app.goo.gl/VfSsCtsDMEQfW6vy9",
+  "mangalam-tower": "https://maps.app.goo.gl/DxzcyreXdiUDugsp7",
+  "narayan-enclave": "https://maps.app.goo.gl/oDFwQx1S6MaQ8NE1A",
+  "nexus-homes": "https://maps.app.goo.gl/LN3Z5wmjXXX2v8138",
+  "oak-forest": "https://maps.app.goo.gl/KqrvwX4v2ifNpBdy6",
+  "one-residency": "https://maps.app.goo.gl/75hpQGMJSLGQB9Qw5",
+  "one-square": "https://maps.app.goo.gl/75hpQGMJSLGQB9Qw5",
+  "palm-arin-gardens": "https://maps.app.goo.gl/8XzgjqfxbCg8rbqo6",
+  "park-side": "https://maps.app.goo.gl/GfptcAm3hGDcDcww7",
+  "pearl-the-central-park": "https://maps.app.goo.gl/3PQJch2vsYJThZFC6",
+  "prahlad-pinnacle": "https://maps.app.goo.gl/a4ujHGUFBPKF4k3R9",
+  "prana-by-nilaya": "https://maps.app.goo.gl/399p4fqqrc33u5XA6",
+  "prarthana-solitaire": "https://maps.app.goo.gl/zt3APayppmyqqvZf9",
+  "sharda-green": "https://maps.app.goo.gl/FeYVx2nvMBApGd7PA",
+  "signature-homes": "https://maps.app.goo.gl/dYuPcMRS7XTAxAd29",
+  "status": "https://maps.app.goo.gl/oSPRfh6vgnN2G6eH8",
+  "the-prestige": "https://maps.app.goo.gl/AryuDwKF5ydBc6KK6",
+  "prarthana-uma-exotic": "https://maps.app.goo.gl/RFxB48kxGLu3TT479",
+  "urban-homes": "https://maps.app.goo.gl/AgR5brGv9VFPo5KH9",
+  "utopian-heights": "https://maps.app.goo.gl/P5RZor5iAksF3mqGA",
+  "utsav-homes": "https://maps.app.goo.gl/ysQyF7YQ2kFrZJAp7",
+  "vaishnavi-hills": "https://maps.app.goo.gl/aVHo9MNArNk1kEGF9",
+  "vicint-marqius": "https://maps.app.goo.gl/7PgYHqV9dqS9WB3P7",
+  "yuvraj-vatika": "https://maps.app.goo.gl/7vgK9RJWgikqBXWZ8",
+  "palm-hills": "https://maps.app.goo.gl/4DoSCnxRtWLqBqzX7"
+} as const;
+
+// This type helps with autocomplete in your IDE
+export type PropertyId = keyof typeof PROPERTY_MAPS;

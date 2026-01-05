@@ -6,6 +6,8 @@ import PropertyCard from "@/components/PropertyCard";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import Link from "next/link";
+import Image from "next/image";
 import {
   Select,
   SelectContent,
@@ -152,13 +154,13 @@ export default function PropertiesPage() {
 
   return (
     <>
-      <BreadcrumbBanner
+      {/* <BreadcrumbBanner
         title="Properties"
         description="Find premium & RERA-approved project with ease."
         items={[{ label: "Properties", href: "/properties" }]}
         // ctaLabel="Book a Visit"
         // ctaHref="/book-visit"
-      />
+      /> */}
       <main className="container mx-auto px-4 py-8 pb-24">
         <div className="max-w-7xl mx-auto space-y-6">
           {/* header */}

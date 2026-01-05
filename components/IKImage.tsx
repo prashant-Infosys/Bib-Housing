@@ -11,6 +11,7 @@ type ImageType = {
   className?: string;
   tr?: boolean;
   fill?: boolean; // 👈 ADDED FILL PROP
+  [key: string]: any;
 };
 
 const urlEndpoint = process.env.NEXT_PUBLIC_URL_ENDPOINT;
@@ -43,6 +44,7 @@ const IKImage = ({ path, w, h, alt, className, tr, fill }: ImageType) => {
       transformation={tr ? transformation : undefined}
       alt={alt}
       className={className}
+      
       {...imageProps} // Spread the determined layout/size props
     />
   );

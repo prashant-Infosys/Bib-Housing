@@ -1,14 +1,17 @@
-/** @type {import("next").NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "picsum.photos",
+        hostname: "ik.imagekit.io",
+        port: "",
+        pathname: "/**",
       },
     ],
   },
+  /* Any other existing config you have should stay here */
 };
 
 export default nextConfig;

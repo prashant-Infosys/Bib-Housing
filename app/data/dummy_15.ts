@@ -4,12 +4,36 @@
 
 export type ListingType = "Sale" | "Rent";
 export type PropertyType = "Apartment" | "Villa" | "Plot" | "Studio" | "Office";
+import { properties as allProperties } from "./dummy_15"; 
+
+// 2. Define your search function using a unique name for the internal logic
+export const getPropertiesByBuilderName = (builderName: string) => {
+  // Use the aliased 'allProperties' to avoid the naming conflict
+  return allProperties.filter((p) => 
+    p.owner.name.toLowerCase().trim() === builderName.toLowerCase().trim()
+  );
+};
+
+export interface UnitConfig {
+  bhk: string;
+  detail: string; // e.g., "2Ts"
+  area: string;   // e.g., "1070 - 1125"
+  price: string | null;  // e.g., "₹ 60 L - 75 L"
+  options: string | null; // e.g., "6 options"
+}
+
 
 export interface Owner {
   ownerType: "Owner" | "Broker" | "Builder";
   name: string;
   phone?: string;
   brokerage?: string;
+}
+
+export interface UnitConfig {
+  bhk: string;
+  detail: string;
+  area: string;
 }
 
 export interface Location {
@@ -20,16 +44,22 @@ export interface Location {
   landmark?: string;
 }
 
-export interface Coordinates {
-  lat: number;
-  lng: number;
+// export interface Coordinates {
+//   lat: number;
+//   lng: number;
+// }
+
+export interface BuilderDetails {
+  description: string;
+  experience: string;
+  projectCount: string;
 }
 
 export type PriceRange = { min: number; max: number };
 
 export interface NearbyLocation {
   name: string;
-  distanceKm: number;
+  distanceKm: number | null; // null if unknown
   type?: string; // optional hint: school, mall, metro, hospital
 }
 
@@ -39,6 +69,7 @@ export interface Property {
   title: string;
   slug: string;
   description: string;
+  projectArea?: string;
   coverImage?:  string;
   propertyType: PropertyType;
   listingType: ListingType;
@@ -61,17 +92,24 @@ export interface Property {
   furnishing?: string;
   facing?: string;
   status?: string; // e.g. "Upcoming", "Completed", "Under Construction", etc.
+  startDate?: string; 
   possessionDate?: string;
   reraApproved?: boolean;
-  reraId?: string;
+  reraId?: string | null;
   amenities?: string[];
   location: Location;
-  coordinates?: Coordinates;
-  images: string[]; // picsum.photos images
+  images: string[]; 
+  logo: string; // picsum.photos images
   owner: Owner;
   postedAt: string; // ISO date
   verified?: boolean;
-  nearbyLocations?: NearbyLocation[]; // NEW: nearby places with distance
+  nearbyLocations?: NearbyLocation[];
+  units?: UnitConfig[];
+ builderDetails?: BuilderDetails;
+ brochureUrl?: string;
+ totalUnits?: number;
+ totalTowers?: number;
+
 
   // NEW: when listing is an upcoming project, builders often give price ranges per unit type
   // e.g. { "1 BHK": {min, max}, "2 BHK": {min, max} }
@@ -79,7 +117,7 @@ export interface Property {
   // optional category for easier UI grouping (Sale / Rent / Upcoming)
   category?: "sale" | "rent" | "upcoming";
 
-  why?: string;
+  why?: string[]; // Added for upcoming projects
 }
 
 // Small deterministic helper to pick values by index
@@ -224,6 +262,7 @@ function makeBanashankariProperty(): Property {
     id,
     title,
     slug,
+    logo: "bib/palm-hills/nkcpl.png",
     description:
       "2 BHK multistorey apartment in Gopalan Florenza, Banashankari Stage 6. Ready to move, spacious layout and good locality connectivity. Suitable for families and investors.",
     propertyType: "Apartment",
@@ -371,7 +410,6 @@ function makeProperty(i: number): Property {
     reraId: i % 3 === 0 ? `RERA${pad(200 + i)}` : undefined,
     amenities: buildAmenities(i),
     location,
-    coordinates: cityObj.coords,
     images,
     owner: {
       ownerType: pick(["Owner", "Broker", "Builder"], i),

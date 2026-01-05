@@ -14,12 +14,14 @@ import IKImage from "@/components/IKImage"; // Your custom ImageKit component
 
 type ImageGalleryProps = {
   images: string[];
-  alt?: string;
+  alt?: string; // 👈 optional now
+  height?: string; // 👈 added for changeable height
 };
 
 export default function ImageGallery({
   images = [],
   alt = "Property image",
+  height = "h-[350px]",
 }: ImageGalleryProps) {
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
@@ -63,20 +65,20 @@ export default function ImageGallery({
         <div className="sm:col-span-2">
           <button
             onClick={() => openAt(0)}
-            className="relative block w-full h-64 sm:h-80 rounded-lg overflow-hidden cursor-pointer bg-gray-100"
+            className={`relative block w-full rounded-lg overflow-hidden cursor-pointer bg-gray-100 ${height}`}
             aria-label="Open gallery"
           >
             <IKImage
               path={validImages[0]}
               alt={`${alt} 1`}
-              fill={true} // Use fill for cover behavior
+              fill={true}
               className="object-cover hover:scale-105 transition-transform duration-500"
             />
           </button>
         </div>
 
         {/* Side Thumbnails */}
-        <div className="flex flex-col gap-3 h-64 sm:h-80">
+        <div className={`flex flex-col gap-3 ${height}`}>
           {visible.slice(1).map((src, i) => {
             const realIndex = i + 1;
             const isLastVisible = i === visible.slice(1).length - 1;
@@ -92,7 +94,7 @@ export default function ImageGallery({
                 <IKImage
                   path={src}
                   alt={`${alt} ${realIndex + 1}`}
-                  fill={true} // Use fill for thumbnails
+                  fill={true}
                   className={`object-cover ${
                     showCountOverlay ? "filter blur-[2px]" : ""
                   }`}
