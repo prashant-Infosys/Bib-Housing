@@ -2,13 +2,9 @@ import { transporter } from "@/lib/nodemailer";
 import { ContactType } from "@/lib/types";
 
 export async function sendContactEmail(data: ContactType) {
+  // We extract name, phone, message. We ignore 'email' from 'data' 
+  // because we are hardcoding the sender/receiver below.
   const { name, phone, message } = data;
-
-  // Runtime validation: Only checks when the function is actually called
-  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS || !process.env.EMAIL_TO) {
-    console.error("Email credentials missing in environment variables.");
-    return { success: false, error: "Server configuration error." };
-  }
 
   const whatsappLink = phone
     ? `https://wa.me/${phone.replace(/[^0-9]/g, "")}`
@@ -16,18 +12,21 @@ export async function sendContactEmail(data: ContactType) {
 
   try {
     await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_TO,
+      // SENDER: Your requested sender
+      from: "skprashant25@gmail.com", 
+      // RECEIVER: Your requested receiver
+      to: "thebib97@gmail.com", 
       subject: `New Lead: ${name}`,
       html: `
         <div style="font-family: sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 8px;">
-          <h2 style="color: #ff4466;">New Inquiry from BiBHousing</h2>
-          <p><strong>Name:</strong> ${name}</p>
+          <h2 style="color: #ea580c;">New Property Listing Inquiry</h2>
+          <p><strong>Owner Name:</strong> ${name}</p>
           <p><strong>Phone:</strong> ${phone || "Not provided"}</p>
-          ${whatsappLink ? `<p><a href="${whatsappLink}" style="color: #25D366;">Chat on WhatsApp</a></p>` : ""}
+          ${whatsappLink ? `<p><a href="${whatsappLink}" style="color: #25D366; font-weight: bold;">Click to Chat on WhatsApp</a></p>` : ""}
           <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;" />
-          <p><strong>Message:</strong></p>
-          <div style="background: #f9f9f9; padding: 15px; border-radius: 5px;">${message}</div>
+          <p><strong>Property Details:</strong></p>
+          <div style="background: #f9f9f9; padding: 15px; border-radius: 5px; line-height: 1.5;">${message}</div>
+          <p style="font-size: 10px; color: #999; margin-top: 20px;">Sent via BiBHousing Lead System</p>
         </div>
       `,
     });

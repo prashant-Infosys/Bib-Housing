@@ -35,10 +35,10 @@ export default async function BuilderProfilePage({
   };
 
   return (
-    <main className="min-h-screen bg-slate-50/30">
+    <main className="top-6 min-h-screen bg-slate-50/30">
       {/* --- HERO SECTION --- */}
-      <div className="relative">
-        <div className="absolute right-6 top-6 z-40 md:right-12 md:top-12">
+      <div className="relative -top-15">
+        <div className="absolute right-6 mt-12 z-40 md:right-12 md:top-12">
           <div className="group flex h-24 w-24 items-center justify-center overflow-hidden rounded-2xl border border-white/20 bg-white/90 p-4 shadow-2xl backdrop-blur-md transition-all duration-500 hover:bg-white md:h-32 md:w-32">
             {builder.logoUrl ? (
               <img
@@ -100,7 +100,7 @@ export default async function BuilderProfilePage({
         )}
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
         {/* QUICK STATS BAR */}
         <div className="relative z-10 -mt-20 mb-12">
           <div className="grid w-full max-w-2xl grid-cols-1 gap-4 sm:grid-cols-2">

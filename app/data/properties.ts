@@ -1,23 +1,18 @@
 import { notFound } from "next/navigation";
-import { Property } from "./dummy_15";
-// app/data/properties.ts
-// properties.ts
+import { Property as BaseProperty } from "./dummy_15";
 
-// Change this function:
-export const getPropertiesByBuilderName = (builderName: string) => {
-  // Ensure we are accessing the properties array correctly
-  return properties.filter((p) => 
-    p.owner.name.trim() === builderName.trim()
-  );
-};
-const properties: Property[] = [
+// 1. RE-EXPORT the type so the SearchBar can use it
+export type Property = BaseProperty;
+
+// 2. EXPORT the array so the SearchBar can access the data
+export const properties: Property[] = [
   {
+    // ... your data
     id: "upcoming_001",
     title: "Assotech Hills",
     slug: "assotech-hills-upcoming-001",
-    description:
-      "Assotech Hills in Morabadi, Ranchi, is a large, integrated, PMAY-linked residential project offering 1, 2, 2.5, & 3 BHK affordable yet premium homes with modern amenities like pools, clubhouses, gyms, and sports courts, located conveniently near essential city infrastructure, making it a strong choice for those seeking quality, secure, and well-connected living in a rapidly developing area of Ranchi.",
-    propertyType: "Apartment",
+    description: "Assotech Hills in Morabadi, Ranchi, is a large, integrated, PMAY-linked residential project offering 1, 2, 2.5, & 3 BHK affordable yet premium homes with modern amenities like pools, clubhouses, gyms, and sports courts, located conveniently near essential city infrastructure, making it a strong choice for those seeking quality, secure, and well-connected living in a rapidly developing area of Ranchi.",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
     why: [
@@ -39,6 +34,7 @@ const properties: Property[] = [
 
     location: {
       address: "Bank Colony Rd, Chiraundi, Morabadi",
+	  area: "Morabadi",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834005",
@@ -148,7 +144,7 @@ const properties: Property[] = [
     slug: "palm-hills-residency-upcoming-002",
     description:
       "Palm Hills Residency is an upcoming gated township designed for premium living. Offering multiple unit types with spacious layouts, lush green surroundings, and world-class amenities. Located in a rapidly developing corridor with excellent connectivity.",
-    propertyType: "Apartment",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
     why: [
@@ -170,6 +166,7 @@ const properties: Property[] = [
 
     location: {
       address: "Itki Road, Kathal More",
+	  area: "Kathal More",	  
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -254,7 +251,7 @@ const properties: Property[] = [
     slug: "aakriti-vaishnavi-hills-upcoming-039",
     description:
       "Vaishanvi Hills is a well-planned residential project by Aakriti Infrastructure in Booty More, Ranchi. The project comprises four towers featuring spacious 2, 3, and 4 BHK flats designed with modern interiors and earthquake-resistant structures.",
-    propertyType: "Apartment",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
     why: [
@@ -277,6 +274,7 @@ const properties: Property[] = [
 
     location: {
       address: "Waxpol Road, Behind Gumla Petrol Pump, Booty Ranchi",
+	  area: "Booty",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834005",
@@ -318,15 +316,13 @@ const properties: Property[] = [
 
     ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+     units: [
+      { bhk: "2 BHK", detail: "2Ts", area: "1050", price: "₹ 44.0 Lacs", options: "1 Option" },
+      { bhk: "3 BHK", detail: "3Ts", area: "1500", price: "₹ 63.0 Lacs", options: "2 Options" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 4400000,
+      max: 6300000,
     },
 
     priceSuffix: "Indicative",
@@ -338,7 +334,7 @@ const properties: Property[] = [
     slug: "advaya-enclave-upcoming-003",
     description:
       "Nestled in Ranchi’s elite Bariatu, Sankalp Advaya is a visionary masterpiece by the renowned Sanjay Puri Architects. This under-construction, IGBC Platinum-rated sanctuary artfully blends high-end opulence with sustainable design. Offering an avant-garde lifestyle, it redefines premium living through its seamless fusion of architectural excellence and eco-conscious luxury.",
-    propertyType: "Apartment",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
     why: [
@@ -359,6 +355,7 @@ const properties: Property[] = [
 
     location: {
       address: "Birla Bagaan Cheshire Home Road Bariatu Road",
+	  area: "Bariatu Road",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -442,15 +439,13 @@ const properties: Property[] = [
   { name: "RIMS", distanceKm: 2.4 },
 ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+       units: [
+      { bhk: "3 BHK", detail: "3Ts", area: "1625 - 2396", price: "₹ 1.05 - 1.55 Cr", options: "3 Options" },
+      { bhk: "4 BHK", detail: "4Ts", area: "3474", price: "₹ 2.25 Cr", options: "1 Option" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 10500000,
+      max: 22500000,
     },
 
     priceSuffix: "Indicative",
@@ -462,7 +457,7 @@ const properties: Property[] = [
     slug: "aprajita-sports-city-upcoming-004",
     description:
       "Aparajita Sports City in Hotwar, Ranchi, offers 1-3 BHK apartments in a gated community focusing on healthy, active living with extensive open spaces, modern amenities like a pool/gym/clubhouse/sports courts, and a strategic location in a growth corridor, making it appealing for lifestyle buyers and investors due to its planned development, connectivity, and future value potential in a developing area. ",
-    propertyType: "Apartment",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
     why: [
@@ -482,7 +477,8 @@ const properties: Property[] = [
       totalUnits: 240,
 
     location: {
-      address: "Hotwar",
+      address: "Hotwar, Ranchi",
+	  area: "Hotwar",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -557,17 +553,15 @@ const properties: Property[] = [
   { name: "Hotwar Sports Complex", distanceKm: 1.2 },
 ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "1 BHK", detail: "1Ts", area: "446 - 632", price: "₹ 18.2 - 25.9 Lacs", options: "2 Options" },
+      { bhk: "2 BHK", detail: "2Ts", area: "900 - 1050", price: "₹ 39.6 - 45.0 Lacs", options: "3 Options" },
+      { bhk: "3 BHK", detail: "3Ts", area: "1250 - 1342", price: "₹ 54.0 - 55.0 Lacs", options: "2 Options" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 1820000,
+      max: 5500000,
     },
-
     priceSuffix: "Indicative",
     negotiable: false,
   },
@@ -578,7 +572,7 @@ const properties: Property[] = [
     slug: "aryan-enclave-upcoming-005",
     description:
       "Aryan Enclave in Tupudana, Ranchi offers modern 2 & 3 BHK apartments with amenities like a gym, clubhouse, park, and 24/7 power/water backup, focusing on comfort and convenience in a well-connected, serene locality near schools and hospitals, making it appealing for families seeking a blend of urban living and peaceful surroundings. ",
-    propertyType: "Apartment",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
     why: [
@@ -600,6 +594,7 @@ const properties: Property[] = [
 
     location: {
       address: "Ram Mandir Road, Beside Heritage Hospital, Bhawanipur Street, Tupudana",
+	  area: "Tupudana",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -643,15 +638,13 @@ const properties: Property[] = [
   { name: "Tupudana Chowk", distanceKm: null },
 ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "2 BHK", detail: "2Ts", area: "1100", price: "₹ 55.0 Lacs", options: "1 Option" },
+      { bhk: "3 BHK", detail: "3Ts", area: "1500", price: "₹ 85.0 Lacs", options: "2 Options" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 5500000,
+      max: 8500000,
     },
 
     priceSuffix: "Indicative",
@@ -663,7 +656,7 @@ const properties: Property[] = [
     slug: "capital-garden-upcoming-006",
     description:
       "Capital Garden in Pundag, Ranchi, offers 2 & 3 BHK flats with modern amenities like gyms, clubhouses, play areas, and green spaces, aiming for a peaceful, convenient lifestyle with good connectivity, security, and power backup, blending luxury with nature, making it a desirable investment for families seeking comfort and community in a developing area.",
-    propertyType: "Apartment",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
     why: [
@@ -685,6 +678,7 @@ const properties: Property[] = [
 
     location: {
       address: "Argora Kathal More Near IOC Petrol Pump Pundag",
+	  area: "Pundag",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -749,17 +743,14 @@ const properties: Property[] = [
   { name: "ISM Pundag", distanceKm: null },
 ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "2 BHK", detail: "2Ts", area: "1140 - 1200", price: "₹ 53.0 - 55.0 Lacs", options: "2 Options" },
+      { bhk: "3 BHK", detail: "3Ts", area: "1580 - 1625", price: "₹ 70.0 - 75.8 Lacs", options: "3 Options" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 5300000,
+      max: 7580000,
     },
-
     priceSuffix: "Indicative",
     negotiable: false,
   },
@@ -769,7 +760,7 @@ const properties: Property[] = [
     slug: "amode-green-upcoming-007",
     description:
       "Amoda Greens by Devika Construction in Ranchi offers luxury living with extensive greenery (60%), premium amenities like a clubhouse, pool, spa, gym, cricket pitch, and banquet hall, focusing on a tranquil, secure, and comfortable lifestyle in areas like Bariatu and Birla Bagan, ideal for those seeking a serene, amenity-rich, gated community with modern facilities and spacious homes in Ranchi. ",
-    propertyType: "Apartment",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
     why: [
@@ -790,6 +781,7 @@ const properties: Property[] = [
 
     location: {
       address: "Birla Bagaan Cheshire Home Road Bariatu Road",
+	  area: "Bariatu Road",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -879,17 +871,14 @@ const properties: Property[] = [
   { name: "Govind Market", distanceKm: 2.8 },
 ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "3 BHK", detail: "3Ts", area: "2124 - 2211", price: "₹ 1.20 - 1.25 Cr", options: "2 Options" },
+      { bhk: "4 BHK", detail: "4Ts", area: "7417", price: "₹ 3.50 Cr", options: "1 Option" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 12000000,
+      max: 35000000,
     },
-
     priceSuffix: "Indicative",
     negotiable: false,
   },
@@ -899,7 +888,7 @@ const properties: Property[] = [
     slug: "diamond-city-upcoming-008",
     description:
       "Diamond City in Oyna, Ranchi, offers modern 2 & 3 BHK flats in a large township with amenities like pools, gyms, and green spaces, strategically located near hospitals (Medanta), schools (BIT), Ring Road, and NH-33 for convenient connectivity, making it ideal for those seeking a peaceful, well-connected, and equipped lifestyle.",
-    propertyType: "Apartment",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
     why: [
@@ -919,7 +908,8 @@ const properties: Property[] = [
       totalUnits: 756,
 
     location: {
-      address: "Near Birsa Chowk",
+      address: "Oyna, Ranchi",
+	  area: "Oyna",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -1007,17 +997,14 @@ const properties: Property[] = [
   { name: "Airport", distanceKm: 24 },
 ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "3 BHK", detail: "3Ts", area: "2124 - 2211", price: "₹ 1.20 - 1.25 Cr", options: "2 Options" },
+      { bhk: "4 BHK", detail: "4Ts", area: "7417", price: "₹ 3.50 Cr", options: "1 Option" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 12000000,
+      max: 35000000,
     },
-
     priceSuffix: "Indicative",
     negotiable: false,
   },
@@ -1027,7 +1014,7 @@ const properties: Property[] = [
     slug: "emerald-heights-upcoming-009",
     description:
       "Emerald Heights is a premium G+13 residential project by Varalika Developers located on Argora-Kathal More Road in Pundag, Ranchi. Scheduled for possession in March 2027, the RERA-approved society offers exclusive 3BHK and 4BHK apartments with over 80% open space. Residents enjoy high-end amenities, including a clubhouse, gymnasium, and a dedicated 3-level security system for a modern, secure lifestyle.",
-    propertyType: "Apartment",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
     why: [
@@ -1047,7 +1034,8 @@ const properties: Property[] = [
       totalUnits: 48,
 
     location: {
-      address: "Argora Kathal More Opp HDFC Bank Pundag",
+      address: "Argora Kathal More Opp HDFC Bank, Pundag",
+	  area: "Pundag",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -1116,17 +1104,14 @@ const properties: Property[] = [
   { name: "NEW PASSPORT OFFICE", distanceKm: 2 },
 ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "3 BHK", detail: "3Ts", area: "1970", price: "₹ 1.26 Cr", options: "2 Options" },
+      { bhk: "4 BHK", detail: "4Ts", area: "2260", price: "₹ 1.45 Cr", options: "1 Option" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 12600000,
+      max: 14500000,
     },
-
     priceSuffix: "Indicative",
     negotiable: false,
   },
@@ -1136,7 +1121,7 @@ const properties: Property[] = [
     slug: "faii-residency-upcoming-010",
     description:
       "FAII Residency by R K Builder and Developers offers 1-4 BHK apartments and commercial spaces on Kanke Road, Ranchi. It features amenities like a gym and swimming pool, with possessions available from December 2025 onwards.",
-    propertyType: "Apartment",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
     why: [
@@ -1158,6 +1143,7 @@ const properties: Property[] = [
 
     location: {
       address: "Kanke Road",
+	  area: "Kanke Road",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -1214,17 +1200,16 @@ const properties: Property[] = [
   { name: "Chandni Chowk", distanceKm: null },
 ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "1 BHK", detail: "1Ts", area: "483", price: "₹ 33.0 Lacs", options: "1 Option" },
+      { bhk: "2 BHK", detail: "2Ts", area: "891 - 1046", price: "₹ 60.0 - 70.0 Lacs", options: "2 Options" },
+      { bhk: "3 BHK", detail: "3Ts", area: "1376 - 2088", price: "₹ 92.0 L - 1.40 Cr", options: "4 Options" },
+      { bhk: "4 BHK", detail: "4Ts", area: "2257", price: "₹ 1.51 Cr", options: "1 Option" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 3300000,
+      max: 15100000,
     },
-
     priceSuffix: "Indicative",
     negotiable: false,
   },
@@ -1234,7 +1219,7 @@ const properties: Property[] = [
     slug: "ganpati-solitaire-upcoming-011",
     description:
       "Shri Ganpati Solitaire is a high-rise residential project in Bariatu, Ranchi, by Shri Ganpati Estate. It offers luxurious 3 BHK and 4 BHK apartments with modern amenities, including a swimming pool and gymnasium. The project spans approximately 1.73 acres and is expected to be delivered by March 2027.",
-    propertyType: "Apartment",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
     why: [
@@ -1255,6 +1240,7 @@ const properties: Property[] = [
 
     location: {
       address: "Birla Bagaan Cheshire Home Road Bariatu Road",
+	  area: "Bariatu Road",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -1319,17 +1305,14 @@ const properties: Property[] = [
   { name: "Birsa Munda Zoo", distanceKm: 17 },
 ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "3 BHK", detail: "3Ts", area: "1555 - 1705", price: "₹ 73.8 - 80.9 Lacs", options: "3 Options" },
+      { bhk: "4 BHK", detail: "4Ts", area: "2048", price: "₹ 97.2 Lacs", options: "1 Option" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 7380000,
+      max: 9720000,
     },
-
     priceSuffix: "Indicative",
     negotiable: false,
   },
@@ -1339,7 +1322,7 @@ const properties: Property[] = [
     slug: "golden-view-upcoming-012",
     description:
       "Golden View is a RERA-approved residential project by Goldenvalley Homes located in Kanke, Ranchi. It offers 1, 2, 3, and 4 BHK apartments and villas with amenities like a gym and swimming pool, slated for possession by February 2029. ",
-    propertyType: "Apartment",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
     why: [
@@ -1360,6 +1343,7 @@ const properties: Property[] = [
 	  
     location: {
       address: "Ring Road, Kanke",
+	  area: "Kanke",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -1423,15 +1407,13 @@ const properties: Property[] = [
       },
     ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+       units: [
+      { bhk: "3 BHK", detail: "3Ts", area: "1555 - 1705", price: "₹ 73.8 - 80.9 Lacs", options: "3 Options" },
+      { bhk: "4 BHK", detail: "4Ts", area: "2048", price: "₹ 97.2 Lacs", options: "1 Option" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 7380000,
+      max: 9720000,
     },
 
     priceSuffix: "Indicative",
@@ -1442,14 +1424,14 @@ const properties: Property[] = [
     title: "Haider City",
     slug: "haider-city-upcoming-013",
     description:
-      "",
-    propertyType: "Apartment",
+      "Haider City is a RERA-approved residential society offering ready-to-move 1, 2, and 3 BHK apartments. Spanning approximately 1.8 acres, it features modern amenities like a swimming pool, clubhouse, and an air-conditioned Masjid within the campus.",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
     why: [
-    "Perfectly Placed—Away From the Noise, Close to Everything.",
-    "Loaded with modern amenities.",
-    "Crafted by trusted builders known for quality and transparency."
+    "Prime Healthcare Hub: Just 500 meters from RIMS and top medical facilities.",
+    "Green Gated Living: Features a central landscape garden facing 10-acre open land.",
+    "Modern Lifestyle Amenities: Includes a rooftop lounge, swimming pool, and fully operational club."
   ],
   brochureUrl: "https://www.dropbox.com/scl/fi/x5bd9lpriw13fnguq1377/Haider-City.pdf?rlkey=sh0r59npihsj9736q1lamndwn&st=omjpqumb&dl=1",
     status: "Upcoming",
@@ -1464,6 +1446,7 @@ const properties: Property[] = [
 
     location: {
       address: "Kantatoli Road, Near RMCH Hospital",
+	  area: "Kantatoli",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -1524,18 +1507,14 @@ const properties: Property[] = [
   { name: "SURENDRA NATH", distanceKm: 2 },
   { name: "DAV BARIATU", distanceKm: 2 },
 ],
-
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "2 BHK", detail: "2Ts", area: "1080", price: "₹ 42.0 Lacs", options: "1 Option" },
+      { bhk: "3 BHK", detail: "3Ts", area: "1550", price: "₹ 62.0 Lacs", options: "2 Options" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 4200000,
+      max: 6200000,
     },
-
     priceSuffix: "Indicative",
     negotiable: false,
   },
@@ -1544,14 +1523,14 @@ const properties: Property[] = [
     title: "IVY Towers",
     slug: "ivy-towers-upcoming-014",
     description:
-      "",
-    propertyType: "Apartment",
+      "DKD Ivy Towers is a RERA-approved, under-construction residential project by DKD Infotech located in Bariatu, Ranchi. It offers luxurious 3 BHK and 4 BHK apartments and penthouses in two towers, with possession scheduled for November 2028. The project is spread over 48,816 sq. ft. and includes numerous modern amenities like a swimming pool and gymnasium. ",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
     why: [
-    "Perfectly Placed—Away From the Noise, Close to Everything.",
-    "Loaded with modern amenities.",
-    "Crafted by trusted builders known for quality and transparency."
+    "Prime Location: Strategically situated in Bariatu, a well-connected area close to schools and hospitals.",
+    "Luxurious Living: Offers spacious apartments and penthouses with modern designs and an 11 ft flat height.",
+    "Extensive Amenities: Features a swimming pool, rooftop cricket turf, and gymnasium for leisure and fitness."
   ],
   brochureUrl: "https://www.dropbox.com/scl/fi/v54d69dgm0apf3mvqc2mk/IVY-TOWERS.pdf?rlkey=wg0sfzpxydlrp5ep9vboxbtni&st=3mf790mh&dl=1",
     status: "Upcoming",
@@ -1566,6 +1545,7 @@ const properties: Property[] = [
 	  
     location: {
       address: "Besdie DAV Nandraj Public School Bariatu Road",
+	  area: "Bariatu Road",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -1630,17 +1610,14 @@ const properties: Property[] = [
   { name: "Surendranath Centenary School", distanceKm: null },
 ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "3 BHK", detail: "3Ts", area: "1348 (Carpet)", price: "₹ 75.0 - 90.0 Lacs", options: "2 Options" },
+      { bhk: "4 BHK", detail: "4Ts", area: "2100", price: "₹ 1.38 Cr", options: "1 Option" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 7500000,
+      max: 13800000,
     },
-
     priceSuffix: "Indicative",
     negotiable: false,
   },
@@ -1650,7 +1627,7 @@ const properties: Property[] = [
     slug: "jagannath-garden-upcoming-015",
     description:
       "Discover your dream home at Aryan Jagannath Gardens in Pundag, Ranchi. Enjoy ready-to-move 2/3 BHK apartments or shops, modern amenities like a gym, and award-winning eco-friendly living.",
-    propertyType: "Apartment",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
     why: [
@@ -1671,6 +1648,7 @@ const properties: Property[] = [
 	  
     location: {
       address: "Near Pundag T.O.P, New Gutwa, Ranchi",
+	  area: "Pundag",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -1736,15 +1714,13 @@ const properties: Property[] = [
   { name: "Piska More", distanceKm: 6.5 },
 ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "2 BHK", detail: "2Ts", area: "850 - 1015", price: "₹ 27.2 - 32.4 Lacs", options: "2 Options" },
+      { bhk: "3 BHK", detail: "3Ts", area: "1259 - 1521", price: "₹ 40.2 - 48.6 Lacs", options: "2 Options" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 2720000,
+      max: 4860000,
     },
 
     priceSuffix: "Indicative",
@@ -1756,7 +1732,7 @@ const properties: Property[] = [
     slug: "kailasa-upcoming-016",
     description:
       "Secure your spacious 3 or 4 BHK apartment at Kailasa, a RERA-approved project in Pandra, Ranchi. Enjoy a modern, secure lifestyle in a gated community by Pawansut Buildcon, with possession expected by October 2026. ",
-    propertyType: "Apartment",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
     why: [
@@ -1776,7 +1752,8 @@ const properties: Property[] = [
       totalUnits: 108,
 	  
     location: {
-      address: "Beside Prasad Petrol Pump Near Ravi Steel Pandra",
+      address: "Beside Prasad Petrol Pump, Near Ravi Steel, Pandra",
+	  area: "Pandra",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -1830,15 +1807,13 @@ const properties: Property[] = [
   { name: "Piska more", distanceKm: 2.5 },
 ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "3 BHK", detail: "3Ts", area: "2070", price: "₹ 1.06 - 1.12 Cr", options: "2 Options" },
+      { bhk: "4 BHK", detail: "4Ts", area: "2405", price: "₹ 1.23 - 1.56 Cr", options: "2 Options" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 10600000,
+      max: 15600000,
     },
 
     priceSuffix: "Indicative",
@@ -1850,7 +1825,7 @@ const properties: Property[] = [
     slug: "mangalam-tower-upcoming-017",
     description:
       "Secure your ideal living or commercial space at Global Mangalam Tower in Pundag, Ranchi, by Global Buildcon. This project, scheduled for possession in January 2028, offers apartments and commercial options with robust security and amenities. ",
-    propertyType: "Apartment",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
     why: [
@@ -1871,6 +1846,7 @@ const properties: Property[] = [
 	  
     location: {
       address: "Beside Ankur Nursery Near Daladali Chowk, Kathal More Road Pundag",
+	  area: "Pundag, ",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -1925,15 +1901,14 @@ const properties: Property[] = [
   { name: "RANCHI RLY. STN.", distanceKm: 5 },
 ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "1 BHK", detail: "1Ts", area: "650", price: "₹ 30.0 Lacs", options: "1 Option" },
+      { bhk: "2 BHK", detail: "2Ts", area: "950 - 1100", price: "₹ 45.0 - 55.0 Lacs", options: "2 Options" },
+      { bhk: "3 BHK", detail: "3Ts", area: "1346 - 1356", price: "₹ 63.0 - 71.0 Lacs", options: "2 Options" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 3000000,
+      max: 7100000,
     },
 
     priceSuffix: "Indicative",
@@ -1944,14 +1919,14 @@ const properties: Property[] = [
     title: "Narayan Enclave",
     slug: "narayan-enclave-upcoming-018",
     description:
-      "",
-    propertyType: "Apartment",
+      "Narayan Enclave by Pratishtha Buildcon is a premium residential project in Kusum Vihar, Morabadi. It features high-end apartments with modern glass facades and spacious sundecks, offering panoramic hill views. The gated society provides luxury amenities like a grand lobby, gymnasium, and rooftop gardens.",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
     why: [
-    "Perfectly Placed—Away From the Noise, Close to Everything.",
-    "Loaded with modern amenities.",
-    "Crafted by trusted builders known for quality and transparency."
+    "Elite Location: Nestled in Ranchi’s most prestigious and greenest residential zone.",
+    "Superior Architectural Design: Modern glass-fronted aesthetics with high ceilings and wide sundecks.",
+    "Advanced Lifestyle Facilities: Features EV charging stations, 3-tier security, and rooftop lounge."
   ],
   brochureUrl: "https://www.dropbox.com/scl/fi/pmogqqh9kwk5fyjo9pa92/NARAYAN-ENCLAVE.pdf?rlkey=c2jgm7ealzu6y0rn39jdohnz2&st=gklil6od&dl=1",
     status: "Upcoming",
@@ -1966,6 +1941,7 @@ const properties: Property[] = [
 	  
     location: {
       address: "Kusum Vihar Morabadi",
+	  area: "Morabadi",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -2018,21 +1994,19 @@ const properties: Property[] = [
 
     nearbyLocations: [
   { name: "Tagore Hill", distanceKm: null },
-  { name: "Moradabadi", distanceKm: null },
+  { name: "Morabadi", distanceKm: null },
   { name: "Ranchi Science Center", distanceKm: null },
   { name: "RIMS Hospital", distanceKm: null },
   { name: "Hill View Hospital", distanceKm: null },
 ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "2 BHK", detail: "2Ts", area: "1000 - 1100", price: "₹ 32.0 - 35.0 Lacs", options: "2 Options" },
+      { bhk: "3 BHK", detail: "3Ts", area: "1100 - 1200", price: "₹ 40.0 Lacs", options: "1 Option" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 3200000,
+      max: 4000000,
     },
 
     priceSuffix: "Indicative",
@@ -2043,14 +2017,14 @@ const properties: Property[] = [
     title: "Pearl The Central Park",
     slug: "pearl-the-central-park-upcoming-019",
     description:
-      "",
-    propertyType: "Apartment",
+      "Pearl The Central Park is an ultra-premium high-rise residential project in Argora, Ranchi, by Moti Infraheights. Spanning 30 acres, it offers luxurious 2, 3, and 4 BHK flats and penthouses with 30+ amenities. ",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
     why: [
-    "Perfectly Placed—Away From the Noise, Close to Everything.",
-    "Loaded with modern amenities.",
-    "Crafted by trusted builders known for quality and transparency."
+    "Prime Location: Strategically situated in Argora’s fastest-growing residential and commercial corridor.",
+    "Premium Amenities: Over 30 world-class facilities including swimming pools and mini golf.",
+    "High ROI: Projected 22% annual appreciation due to major infrastructure developments."
   ],
   brochureUrl: "https://www.dropbox.com/scl/fi/kmvt8weofzpqov6io27vt/Pearl-The-Central-Park.pdf?rlkey=2tzfu9uunsyzpsj33bo8yrbj8&st=nq0h6kgi&dl=1",
     status: "Upcoming",
@@ -2064,7 +2038,8 @@ const properties: Property[] = [
       totalUnits: 140,
 	  
     location: {
-      address: "Near Moti Fuel Centre Argora Pundag",
+      address: "Near Moti Fuel Centre Argora, Pundag",
+	  area: "Pundag",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -2138,16 +2113,13 @@ const properties: Property[] = [
   { name: "Airport", distanceKm: 8 },
   { name: "DPS School", distanceKm: 3.4 },
 ],
-
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "3 BHK", detail: "3Ts", area: "1650 - 1850", price: "₹ 82.0 - 95.0 Lacs", options: "3 Options" },
+      { bhk: "4 BHK", detail: "4Ts", area: "2400", price: "₹ 1.25 Cr", options: "1 Option" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 8200000,
+      max: 12500000,
     },
 
     priceSuffix: "Indicative",
@@ -2159,7 +2131,7 @@ const properties: Property[] = [
     slug: "nexus-homes-upcoming-020",
     description:
       "Secure your ultra-luxury 3 or 4 BHK apartment at Nexus Homes, a RERA-approved project in Gandhi Nagar Colony, Kanke Road, Ranchi. Enjoy a peaceful, high-status, and hygienic environment in a gated community with modern amenities like a home theater and terrace garden. The project, developed by Arthika Buildcon, has units that are ready to move into, allowing for immediate occupancy. ",
-    propertyType: "Apartment",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
     why: [
@@ -2180,6 +2152,7 @@ const properties: Property[] = [
 	  
     location: {
       address: "Opp Recreational Club Gandhinagar Colony Kanke Road",
+	  area: "Kanke Road",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -2243,15 +2216,13 @@ const properties: Property[] = [
   { name: "DAV Public School", distanceKm: null },
 ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "3 BHK", detail: "3Ts", area: "1665 - 1960", price: "₹ 1.24 - 1.47 Cr", options: "3 Options" },
+      { bhk: "4 BHK", detail: "4Ts", area: "2463", price: "₹ 1.84 Cr", options: "1 Option" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 12400000,
+      max: 18400000,
     },
 
     priceSuffix: "Indicative",
@@ -2263,7 +2234,7 @@ const properties: Property[] = [
     slug: "oak-forest-upcoming-021",
     description:
       "Step into your spacious, dream 2, 3, or 4 BHK home at NK Oak Forest, a RERA-approved, secure gated community in Argora, Ranchi. Developed by NK Constructions, this project offers modern amenities like a swimming pool and gym, with many units ready to move into immediately. ",
-    propertyType: "Apartment",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
     why: [
@@ -2283,7 +2254,8 @@ const properties: Property[] = [
       totalUnits: 96,
 	  
     location: {
-      address: "Argora Purana Chowk",
+      address: "Pundag Rd, Argora Housing Colony, Argora, Ranchi",
+	  area: "Argora",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -2358,15 +2330,14 @@ const properties: Property[] = [
   { name: "Project Building", distanceKm: 4 },
 ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "2 BHK", detail: "2Ts", area: "1252 - 1325", price: "₹ 68.4 - 72.0 Lacs", options: "2 Options" },
+      { bhk: "3 BHK", detail: "3Ts", area: "1595 - 2020", price: "₹ 87.0 L - 1.10 Cr", options: "3 Options" },
+      { bhk: "4 BHK", detail: "4Ts", area: "2385", price: "₹ 1.30 - 2.12 Cr", options: "1 Option" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 6840000,
+      max: 21200000,
     },
 
     priceSuffix: "Indicative",
@@ -2377,14 +2348,14 @@ const properties: Property[] = [
     title: "ONE Residency",
     slug: "one-residency-upcoming-022",
     description:
-      "",
-    propertyType: "Apartment",
+      "Secure your luxurious 2, 3, or 4 BHK apartment or penthouse at Pratishtha One Residences in Morabadi, Ranchi. This RERA-approved project offers modern amenities and 3-tier security, with possession expected by December 2026. ",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
     why: [
-    "Perfectly Placed—Away From the Noise, Close to Everything.",
-    "Loaded with modern amenities.",
-    "Crafted by trusted builders known for quality and transparency."
+    "Prime Location: Situated in Morabadi with good connectivity to schools and hospitals.",
+    "Luxurious Amenities: Features a swimming pool, gym, badminton court, and terrace garden.",
+    "Unique Design: Boasts a glass facade and wide sundecks with 360-degree hill views."
   ],
   brochureUrl: "https://www.dropbox.com/scl/fi/rbjhf5s8612yrp9iuuhah/ONE-RESIDENCES.pdf?rlkey=h7ed74nuwijw8nmgfjf9fk8eu&st=xehare9s&dl=1",
     status: "Upcoming",
@@ -2398,7 +2369,8 @@ const properties: Property[] = [
       totalUnits: 80,
 	  
     location: {
-      address: "Kanke Boreya Chowk",
+      address: "Kanke, Boreya Chowk",
+	  area: "Kanke",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -2486,17 +2458,15 @@ const properties: Property[] = [
   { name: "Morabadi", distanceKm: null },
 ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "2 BHK", detail: "2Ts", area: "1350", price: "₹ 65.0 Lacs", options: "1 Option" },
+      { bhk: "3 BHK", detail: "3Ts", area: "2030 - 2339", price: "₹ 1.17 - 1.35 Cr", options: "4 Options" },
+      { bhk: "4 BHK", detail: "4Ts", area: "2700 - 4678", price: "₹ 1.56 - 2.72 Cr", options: "2 Options" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 6500000,
+      max: 27200000,
     },
-
     priceSuffix: "Indicative",
     negotiable: false,
   },
@@ -2505,14 +2475,14 @@ const properties: Property[] = [
     title: "ONE Square",
     slug: "one-square-upcoming-007",
     description:
-      "",
-    propertyType: "Apartment",
+      "Invest in commercial shops at Pratishtha One Square in Kanke, Ranchi. This is a new-generation, under-construction project by Pratishtha Super Buildcon, offering modern facilities and high visibility, with possession expected by November 2026. ",
+    propertyType: "Commercial",
     listingType: "Sale",
     category: "upcoming",
     why: [
-    "Perfectly Placed—Away From the Noise, Close to Everything.",
-    "Loaded with modern amenities.",
-    "Crafted by trusted builders known for quality and transparency."
+    "High Visibility: Commercial properties here offer maximum visibility and high potential for foot traffic.",
+    "Investment Potential: Multiple property options are available to cater to various budget ranges.",
+    "Modern Facilities: Offers all major, modern facilities and amenities needed for a business."
   ],
   brochureUrl: "https://www.dropbox.com/scl/fi/ykkkbbq1q2yt9rvnvi5v6/ONE-SQUARE.pdf?rlkey=fip1t65vl57apu7zzmgb1llcf&st=bxm6ev92&dl=1",
     status: "Upcoming",
@@ -2527,6 +2497,7 @@ const properties: Property[] = [
 	  
     location: {
       address: "Kanke Boreya Chowk Ranchi",
+	  area: "Kanke",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -2573,15 +2544,13 @@ const properties: Property[] = [
       
     ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "Studio", detail: "1Ts", area: "450 - 600", price: "₹ 35.0 - 45.0 Lacs", options: "2 Options" },
+      { bhk: "1 BHK", detail: "1Ts", area: "750", price: "₹ 55.0 Lacs", options: "1 Option" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 3500000,
+      max: 5500000,
     },
 
     priceSuffix: "Indicative",
@@ -2593,7 +2562,7 @@ const properties: Property[] = [
     slug: "palm-arin-gardens-upcoming-024",
     description:
       "Discover peaceful living at Nisith Palm Arin Garden in Pundag, Ranchi. This RERA-approved project by Nisith Keshari Construction offers a range of 1, 2, and 3 BHK apartments designed for comfort, with possession expected by May 2029. ",
-    propertyType: "Apartment",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
     why: [
@@ -2614,6 +2583,7 @@ const properties: Property[] = [
 	  
     location: {
       address: "Near Tashil, Kutchery, Pundag",
+	  area: "Pundag",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -2665,17 +2635,15 @@ const properties: Property[] = [
   { name: "Ring Road / Main Road", distanceKm: null },
   { name: "Kathal More", distanceKm: null },
 ],
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "1 BHK", detail: "1Ts", area: "550", price: "₹ 23.1 Lacs", options: "1 Option" },
+      { bhk: "2 BHK", detail: "2Ts", area: "950 - 1100", price: "₹ 45.5 - 49.1 Lacs", options: "2 Options" },
+      { bhk: "3 BHK", detail: "3Ts", area: "1350 - 1835", price: "₹ 62.5 - 77.0 Lacs", options: "3 Options" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 2310000,
+      max: 7700000,
     },
-
     priceSuffix: "Indicative",
     negotiable: false,
   },
@@ -2684,14 +2652,14 @@ const properties: Property[] = [
     title: "Park Side",
     slug: "park-side-upcoming-025",
     description:
-      "",
-    propertyType: "Apartment",
+      "Settle into your new home now at Pratishtha Park Side in Morabadi, Ranchi. This ready-to-move housing society offers comfort and style in spacious apartments located in a well-connected, promising neighborhood. ",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
         why: [
-    "Perfectly Placed—Away From the Noise, Close to Everything.",
-    "Loaded with modern amenities.",
-    "Crafted by trusted builders known for quality and transparency."
+    "Ready for Occupancy: Families have already started moving in, allowing you to move immediately.",
+    "Prime Location: Excellent road connectivity to major parts of Ranchi, including Kutchery Road and Ratu Road.",
+    "Peaceful Area: Morabadi is a nice, serene, and safe place to live, great for morning walks and hangouts."
   ],
   brochureUrl: "https://www.dropbox.com/scl/fi/mlveo9e7gnpks2m22zpzr/PARK-SIDE.pdf?rlkey=s1lj6v7sjsouql0z44xuyjm5v&st=lewn7wuv&dl=1",
 
@@ -2707,6 +2675,7 @@ const properties: Property[] = [
 
     location: {
       address: "Harihar Singh Road Morabadi",
+	  area: "Morabadi",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -2756,15 +2725,13 @@ const properties: Property[] = [
   { name: "Airport", distanceKm: 10 },
 ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "2 BHK", detail: "2Ts", area: "1050", price: "₹ 48.0 Lacs", options: "1 Option" },
+      { bhk: "3 BHK", detail: "3Ts", area: "1550", price: "₹ 72.0 Lacs", options: "2 Options" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 4800000,
+      max: 7200000,
     },
 
     priceSuffix: "Indicative",
@@ -2776,7 +2743,7 @@ const properties: Property[] = [
     slug: "prahlad-pinnacle-upcoming-026",
     description:
       "Prahlad Pinnalce is a premium residential development by Prahlad Builders located near Kathal More, Ranchi. This RERA-approved project features 11-floor twin towers offering 1, 2, 3, and 4 BHK flats. ",
-    propertyType: "Apartment",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
         why: [
@@ -2797,6 +2764,7 @@ const properties: Property[] = [
 	  
     location: {
       address: "Pundag T.O.P. Lal Gutwa",
+	  area: "Pundag",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -2883,15 +2851,13 @@ const properties: Property[] = [
   { name: "Hatia Railway Station", distanceKm: 10 },
 ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "3 BHK", detail: "3Ts", area: "1550", price: "₹ 75.0 Lacs", options: "2 Options" },
+      { bhk: "4 BHK", detail: "4Ts", area: "2100", price: "₹ 1.05 Cr", options: "1 Option" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 7500000,
+      max: 10500000,
     },
 
     priceSuffix: "Indicative",
@@ -2903,7 +2869,7 @@ const properties: Property[] = [
     slug: "prana-by-nilaya-upcoming-027",
     description:
       "Prana By Nilaya is a nature-integrated residential project on BIT Mesra Road, Ranchi. This 1.15-acre development offers 111 luxury 2 and 3 BHK flats featuring 73% open green spaces and 36+ lifestyle amenities. ",
-    propertyType: "Apartment",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
         why: [
@@ -2924,6 +2890,7 @@ const properties: Property[] = [
 	  
     location: {
       address: "BIT Mesra Road Near Navoday Vidyalaya",
+	  area: "BIT Mesra",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -3017,15 +2984,13 @@ const properties: Property[] = [
   { name: "Khelgaon Sports Complex", distanceKm: 10 },
 ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "2 BHK", detail: "2Ts", area: "1100 - 1390", price: "₹ 50.0 - 56.5 Lacs", options: "2 Options" },
+      { bhk: "3 BHK", detail: "3Ts", area: "1708 - 2010", price: "₹ 69.4 - 81.7 Lacs", options: "3 Options" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 5000000,
+      max: 8170000,
     },
 
     priceSuffix: "Indicative",
@@ -3036,14 +3001,14 @@ const properties: Property[] = [
     title: "Prarthna Solitaire",
     slug: "prarthna-soltaire-upcoming-028",
     description:
-      "",
-    propertyType: "Apartment",
+      "PRARTHANA SOLITAIREis a RERA-approved mixed-use development by Prarthana Group, offering 3 BHK residential flats above two floors of commercial space in Simaliya/Hindpiri, Ranchi.",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
         why: [
-    "Perfectly Placed—Away From the Noise, Close to Everything.",
-    "Loaded with modern amenities.",
-    "Crafted by trusted builders known for quality and transparency."
+    "Mixed-Use Development: Features commercial space on lower floors, residences above.",
+    "Noise Reduction Design: Commercial floors act as a buffer, reducing road noise for residents.",
+    "Modern Amenities: Includes gym, children's play area, EV charging, landscape garden."
   ],
   brochureUrl: "https://www.dropbox.com/scl/fi/2ugnbqoeik518vmldm917/Prathna-Solitaire.pdf?rlkey=gql462zrirx5yual7kr32hyfs&st=najb1gsx&dl=1",
     status: "Upcoming",
@@ -3058,6 +3023,7 @@ const properties: Property[] = [
 	  
     location: {
       address: "Near Dhoni Farm House Simaliya",
+	  area: "Simaliya",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -3120,15 +3086,13 @@ const properties: Property[] = [
   { name: "Rinchi Hospital", distanceKm: null },
 ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "3 BHK", detail: "3Ts", area: "1600", price: "₹ 80.0 Lacs", options: "2 Options" },
+      { bhk: "4 BHK", detail: "4Ts", area: "2200", price: "₹ 1.15 Cr", options: "1 Option" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 8000000,
+      max: 11500000,
     },
 
     priceSuffix: "Indicative",
@@ -3139,14 +3103,14 @@ const properties: Property[] = [
     title: "Prarthana Uma Exotic",
     slug: "prarthana-uma-exotic-upcoming-029",
     description:
-      "",
-    propertyType: "Apartment",
+      "Uma Exotic is a premium high-rise residential project by Prarthana Group in Bariatu, Ranchi. Spanning over 1 acre, the 12-storey tower features 96 luxurious 3, 4, and 5 BHK apartments and penthouses. ",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
         why: [
-    "Perfectly Placed—Away From the Noise, Close to Everything.",
-    "Loaded with modern amenities.",
-    "Crafted by trusted builders known for quality and transparency."
+    "Luxury Lifestyle: Features a rooftop swimming pool, sun deck, and mini-theatre.",
+    "Eco-Smart Living: IGBC-approved building featuring solar power and EV charging facilities.",
+    "Prime Medical Hub: Situated near Medanta and RIMS for elite healthcare access."
   ],
   brochureUrl: "https://www.dropbox.com/scl/fi/xdt6pqyrf27msgzb2afkt/Prathna-Uma-Exotic.pdf?rlkey=21omj5l3iaa1uv0n4l4u1ptiv&st=0mvz5ziy&dl=1",
     status: "Upcoming",
@@ -3161,6 +3125,7 @@ const properties: Property[] = [
 	  
     location: {
       address: "Chesire Home Road, Bariatu, Road",
+	  area: "Bariatu Road",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -3239,15 +3204,14 @@ const properties: Property[] = [
   { name: "Khelgaon", distanceKm: 6 },
 ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+   units: [
+      { bhk: "3 BHK", detail: "3Ts", area: "1500 - 1688", price: "₹ 95.0 L - 1.07 Cr", options: "3 Options" },
+      { bhk: "4 BHK", detail: "4Ts", area: "1938 - 2169", price: "₹ 1.23 - 1.37 Cr", options: "2 Options" },
+      { bhk: "5 BHK", detail: "5Ts", area: "2396", price: "₹ 1.52 Cr", options: "1 Option" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 9500000,
+      max: 15200000,
     },
 
     priceSuffix: "Indicative",
@@ -3259,7 +3223,7 @@ const properties: Property[] = [
     slug: "sharda-green-upcoming-030",
     description:
       "Sharda Green is an ultra-premium gated community in Bariatu, Ranchi, by Sharda Shelters. Spread over 2 acres, the 4-tower (B+G+10) project offers 143 luxurious 3, 4, and 5 BHK units and penthouses with 19+ lifestyle amenities. ",
-    propertyType: "Apartment",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
         why: [
@@ -3279,7 +3243,8 @@ const properties: Property[] = [
       totalUnits: 120,
 	  
     location: {
-      address: "Birla Bagaan Joda Talab Road",
+      address: "Birla Bagaan Joda Talab Road, Bariatu",
+	  area: "Bariatu",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -3397,15 +3362,14 @@ const properties: Property[] = [
   { name: "High Court", distanceKm: 14.3 }
 ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "3 BHK", detail: "3Ts", area: "1648", price: "₹ 84.0 Lacs", options: "2 Options" },
+      { bhk: "4 BHK", detail: "4Ts", area: "2350", price: "₹ 1.20 - 1.42 Cr", options: "1 Option" },
+      { bhk: "6 BHK", detail: "5Ts", area: "5058", price: "₹ 2.58 Cr", options: "1 Option" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 8400000,
+      max: 25800000,
     },
 
     priceSuffix: "Indicative",
@@ -3417,7 +3381,7 @@ const properties: Property[] = [
     slug: "signature-homes-upcoming-031",
     description:
       "Signature Homes is an elite residential project by Minu Enhance Developers in Bariatu, Ranchi. This RERA-approved (JHARERA/PROJECT/126/2023) B+G+16 tower offers premium 3 and 4 BHK luxury apartments with 75% green space. ",
-    propertyType: "Apartment",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
         why: [
@@ -3438,6 +3402,7 @@ const properties: Property[] = [
 	  
     location: {
       address: "Chesire Home Road, Bariatu, Road",
+	  area: "Bariatu",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -3516,15 +3481,13 @@ const properties: Property[] = [
       
     ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "3 BHK", detail: "3Ts", area: "1800", price: "₹ 95.0 Lacs", options: "2 Options" },
+      { bhk: "4 BHK", detail: "4Ts", area: "2500", price: "₹ 1.35 Cr", options: "1 Option" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 9500000,
+      max: 13500000,
     },
 
     priceSuffix: "Indicative",
@@ -3536,7 +3499,7 @@ const properties: Property[] = [
     slug: "status-upcoming-032",
     description:
       "Status is a boutique luxury residential project by Anandi Estates in Tupudana, Ranchi. This single-tower development features 23 exclusive 3 BHK units across 8 floors with modern architecture. ",
-    propertyType: "Apartment",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
         why: [
@@ -3557,6 +3520,7 @@ const properties: Property[] = [
 	  
     location: {
       address: "Near Tupudana Chowk, Tupudana,",
+	  area: "Tupudana",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -3621,15 +3585,13 @@ const properties: Property[] = [
   { name: "Kantatoli Bus Stand", distanceKm: 12 },
 ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "2 BHK", detail: "2Ts", area: "1150", price: "₹ 52.0 Lacs", options: "1 Option" },
+      { bhk: "3 BHK", detail: "3Ts", area: "1550", price: "₹ 72.0 Lacs", options: "1 Option" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 5200000,
+      max: 7200000,
     },
 
     priceSuffix: "Indicative",
@@ -3641,7 +3603,7 @@ const properties: Property[] = [
     slug: "the-prestige-upcoming-033",
     description:
       "The Prestige  is an under-construction single-tower residential project in Getlatu/Booty More, Ranchi, by Pravujagdish Realtors. It offers 2 and 3 BHK flats,",
-    propertyType: "Apartment",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
         why: [
@@ -3660,7 +3622,8 @@ const properties: Property[] = [
       totalTowers: 2,
       totalUnits: 90,
     location: {
-      address: "Near Gautam Green City, Booty More Chowk,",
+      address: "Near Gautam Green City, Booty More Chowk,Getlatu",
+	  area: "Getlatu",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -3708,15 +3671,13 @@ const properties: Property[] = [
   { name: "Booty More Chowk", distanceKm: 2 },
 ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "2 BHK", detail: "2Ts", area: "1170 - 1184", price: "₹ 46.8 - 47.4 Lacs", options: "2 Options" },
+      { bhk: "3 BHK", detail: "3Ts", area: "1370 - 1560", price: "₹ 54.8 - 62.4 Lacs", options: "4 Options" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 4680000,
+      max: 6240000,
     },
 
     priceSuffix: "Indicative",
@@ -3728,7 +3689,7 @@ const properties: Property[] = [
     slug: "urban-homes-upcoming-034",
     description:
       "Urban Homes is an under-construction residential project by S S Buildcon in Morabadi, Ranchi. The project features two towers (G+4) with a total of 60 units, offering 2 and 3 BHK apartments.",
-    propertyType: "Apartment",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
         why: [
@@ -3749,6 +3710,7 @@ const properties: Property[] = [
 	  
     location: {
       address: "NEAR ASHIRVAD BANQUET HALL, BOREYA, MORABADI",
+	  area: "Morabadi",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -3819,15 +3781,14 @@ const properties: Property[] = [
   { name: "Birsa Munda Airport", distanceKm: 13 },
 ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "1 BHK", detail: "1Ts", area: "600", price: "₹ 24.0 Lacs", options: "1 Option" },
+      { bhk: "2 BHK", detail: "2Ts", area: "1050", price: "₹ 42.0 Lacs", options: "2 Options" },
+      { bhk: "3 BHK", detail: "3Ts", area: "1350", price: "₹ 54.0 Lacs", options: "2 Options" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 2400000,
+      max: 5400000,
     },
 
     priceSuffix: "Indicative",
@@ -3838,14 +3799,14 @@ const properties: Property[] = [
     title: "Utopian Heights",
     slug: "utopian-heights-upcoming-035",
     description:
-      "",
-    propertyType: "Apartment",
+      "Utopian Heights is an under-construction luxury residential project by Akshat Housing Developers in Argora, Ranchi, offering 1, 2, 3, and 4 BHK flats and 30+ amenities.",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
         why: [
-    "Perfectly Placed—Away From the Noise, Close to Everything.",
-    "Loaded with modern amenities.",
-    "Crafted by trusted builders known for quality and transparency."
+    "Prime Location: Ideally situated in Argora near Argora railway station and major hospitals.",
+    "Modern Amenities: Over 30 world-class facilities including swimming pool, gym, and library.",
+    "Peaceful Environment: Designed as a noise-free, pollution-free complex for a tranquil lifestyle."
   ],
   brochureUrl: "https://www.dropbox.com/scl/fi/rfcwzrjyyl7af3tsrcexj/UTOPIAN-HEIGHTS-W.pdf?rlkey=79gce0dm1og5mb0182y352aj6&st=2cu4d4tk&dl=1",
     status: "Upcoming",
@@ -3860,6 +3821,7 @@ const properties: Property[] = [
 	  
     location: {
       address: "Towards Lajpat Colony, Towards Kathal More",
+	  area: "Pundag",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -3944,15 +3906,13 @@ const properties: Property[] = [
   { name: "Passport Office and Other Government of India Offices", distanceKm: null },
 ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "3 BHK", detail: "3Ts", area: "1750 - 1950", price: "₹ 85.0 L - 1.10 Cr", options: "3 Options" },
+      { bhk: "4 BHK", detail: "4Ts", area: "2300 - 2500", price: "₹ 1.30 - 1.60 Cr", options: "2 Options" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 8500000,
+      max: 16000000,
     },
 
     priceSuffix: "Indicative",
@@ -3963,14 +3923,14 @@ const properties: Property[] = [
     title: "Utsav Trinayan",
     slug: "utsav-trinayan-upcoming-036",
     description:
-      "",
-    propertyType: "Apartment",
+      "Utsav Homes  is a premium under-construction residential complex by Trinayan Homes in Morabadi, Ranchi. Spanning two towers with 13 floors each, it offers luxurious 3 and 4 BHK apartments and spacious 6 BHK villas. ",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
         why: [
-    "Perfectly Placed—Away From the Noise, Close to Everything.",
-    "Loaded with modern amenities.",
-    "Crafted by trusted builders known for quality and transparency."
+    "Diverse Housing Options: Offers a unique mix of high-rise apartments and luxury villas.",
+    "World-Class Amenities: Features 20+ lifestyle facilities including a skywalk, gym, and pool.",
+    "Prime Location: Strategically situated behind Vidya Vikash Public School on Morabadi Road."
   ],
   brochureUrl: "https://www.dropbox.com/scl/fi/q8k6p0xpsjbs49uxepynd/Utsav-Trinayan.pdf?rlkey=77zztw6x2crk9itpnw4xnkbqn&st=xpo4gh8j&dl=1",
     status: "Upcoming",
@@ -3986,6 +3946,7 @@ const properties: Property[] = [
 	  
     location: {
       address: "Behind Vidya Vikas Public School, Morabadi Road",
+	  area: "Morabadi",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -4044,15 +4005,13 @@ const properties: Property[] = [
   { name: "Morabadi", distanceKm: 2.5 },
 ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "2 BHK", detail: "2Ts", area: "950", price: "₹ 38.0 Lacs", options: "1 Option" },
+      { bhk: "3 BHK", detail: "3Ts", area: "1450", price: "₹ 58.0 Lacs", options: "2 Options" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 3800000,
+      max: 5800000,
     },
 
     priceSuffix: "Indicative",
@@ -4064,7 +4023,7 @@ const properties: Property[] = [
     slug: "vicint-marqius-upcoming-037",
     description:
       "Vicint Maqruis is a mixed-use development by Vicint Homes on Morabadi Road/Hehal, Ranchi. This RERA-registered project (JHARERA/PROJECT/99/2024) features residential towers with 3, 4 BHK, studio apartments, and duplexes, above a commercial mini-mall complex",
-    propertyType: "Apartment",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
         why: [
@@ -4085,6 +4044,7 @@ const properties: Property[] = [
 	  
     location: {
       address: "Near Geetanjali Banquet, Opp. Bharat Petrol Pump, Boriya Road, Morabadi",
+	  area: "Morabadi",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -4178,15 +4138,13 @@ const properties: Property[] = [
   { "name": "Ranchi Institute of Neuropsychiatry and Allied Sciences", "distanceKm": 5.6 }
 ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "3 BHK", detail: "3Ts", area: "1900", price: "₹ 98.0 Lacs", options: "2 Options" },
+      { bhk: "4 BHK", detail: "4Ts", area: "2800", price: "₹ 1.45 Cr", options: "1 Option" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 9800000,
+      max: 14500000,
     },
 
     priceSuffix: "Indicative",
@@ -4197,14 +4155,14 @@ const properties: Property[] = [
     title: "Vinayak Garden Valley",
     slug: "vinayak-garden-valley-upcoming-038",
     description:
-      "",
-    propertyType: "Apartment",
+      "Vinayak Garden Valley is a RERA-approved, premium gated society in Hesag, Hatia, Ranchi, by Vinayak Developers & Associates, offering 2 and 3 BHK apartments across 5 acres. Some units are ready for possession, with the rest expected by August 2027. ",
+    propertyType: "Residential",
     listingType: "Sale",
     category: "upcoming",
         why: [
-    "Perfectly Placed—Away From the Noise, Close to Everything.",
-    "Loaded with modern amenities.",
-    "Crafted by trusted builders known for quality and transparency."
+    "Prime Location: Close to the Ranchi Airport and Hatia Railway Station.",
+    "Modern Amenities: Features a swimming pool, gymnasium, and clubhouse for residents.",
+    "Green Spaces: The project boasts over 65% open and landscaped area."
   ],
   brochureUrl: "https://www.dropbox.com/scl/fi/8xmbyj747jovu7ui70ax0/Vinayak-Garden-Valley.pdf?rlkey=0cs3xp3cz1ie6f4aibmfp6mnv&st=fg6ri24g&dl=1",
     status: "Upcoming",
@@ -4219,6 +4177,7 @@ const properties: Property[] = [
 	  
     location: {
       address: "Hesag, Near Don Bosco School,",
+	  area: "Hesag",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -4301,15 +4260,13 @@ const properties: Property[] = [
   { "name": "Hatia Railway Station", "distanceKm": null }
 ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "2 BHK", detail: "2Ts", area: "1210", price: "₹ 66.5 Lacs", options: "1 Option" },
+      { bhk: "3 BHK", detail: "3Ts", area: "1400 - 1845", price: "₹ 77.0 L - 1.01 Cr", options: "2 Options" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 6650000,
+      max: 10100000,
     },
 
     priceSuffix: "Indicative",
@@ -4320,14 +4277,14 @@ const properties: Property[] = [
     title: "Yuvraj Vatika",
     slug: "yuvraj-vatika-upcoming-040",
     description:
-      "",
-    propertyType: "Apartment",
+      "Yuvraj Vatika is a gated residential society located in Ormanjhi, Ranchi, primarily offering residential plots and semi-developed duplexes. Developed by Ashirwad Properties, it is situated approximately 800–900 meters from Ormanjhi Chowk (NH-33), often referred to as the Gateway of Ranchi.",
+    propertyType: "Plot/Land",
     listingType: "Sale",
     category: "upcoming",
         why: [
-    "Perfectly Placed—Away From the Noise, Close to Everything.",
-    "Loaded with modern amenities.",
-    "Crafted by trusted builders known for quality and transparency."
+    "Location: Ormanjhi, Ranchi (Near NH-33 and Calcutta Public School).",
+    "Property Type: Residential Plots and Semi-Developed Duplexes.",
+    "Price Range: Typically starts from ₹12.5 Lakhs to ₹25 Lakhs (approx. ₹1,200–₹1,450 per sq. ft.)."
   ],
   brochureUrl: "https://www.dropbox.com/scl/fi/1vcwpmwamygyvnz3c9dck/Yuvraj-Vatika.pdf?rlkey=uwfekv8bjrp2xy3tkvq7douxn&st=o2dpfzff&dl=1",
     status: "Upcoming",
@@ -4342,6 +4299,7 @@ const properties: Property[] = [
 	  
     location: {
       address: "Ormanjhi",
+	  area: "Ormanjhi",
       city: "Ranchi",
       state: "Jharkhand",
       pincode: "834001",
@@ -4387,15 +4345,12 @@ const properties: Property[] = [
       },
     ],
 
-    unitPriceRanges: {
-      "1 BHK": { min: 3200000, max: 3800000 },
-      "2 BHK": { min: 5200000, max: 6800000 },
-      "3 BHK": { min: 7800000, max: 9800000 },
-    },
-
+    units: [
+      { bhk: "Plot", detail: "N/A", area: "1200 - 2500", price: "₹ 30.0 - 65.0 Lacs", options: "Many" }
+    ],
     priceRange: {
-      min: 5700000,
-      max: 15400000,
+      min: 3000000,
+      max: 6500000,
     },
 
     priceSuffix: "Indicative",
@@ -4417,4 +4372,11 @@ export const getPropertyBySlug = (slug: string) => {
     return property;
   }
   return notFound();
+};
+
+export const getPropertiesByBuilderName = (builderName: string) => {
+  // Assuming PROPERTIES is your array of data in this file
+  return properties.filter(
+    (property) => property.owner.name.toLowerCase() === builderName.toLowerCase()
+  );
 };

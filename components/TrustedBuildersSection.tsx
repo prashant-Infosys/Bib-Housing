@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay"; // Ensure this is installed
+import Autoplay from "embla-carousel-autoplay";
 import Link from "next/link";
 import {
   CardHeader,
@@ -24,30 +24,43 @@ import {
 import { BUILDERS } from "@/app/data/builder";
 
 export default function TrustedBuildersSection() {
-  // 1. Setup Autoplay with faster speed (2s) and playOnInit: false
-  const autoplay = Autoplay({
+  // 1. Setup Autoplay to stop on mouse enter
+  const autoplayOptions = {
     delay: 1800,
     stopOnInteraction: false,
-    playOnInit: false,
-  });
+    stopOnMouseEnter: true, // Stops carousel when hovering over any card
+    playOnInit: true,
+  };
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
       align: "start",
-      loop: true, // Loop must be true for infinite auto-scroll
+      loop: true,
       slidesToScroll: 1,
       containScroll: false,
     },
-    [autoplay]
+    [Autoplay(autoplayOptions)]
   );
 
-  // 2. Hover handlers to trigger the carousel
-  const handleMouseEnter = useCallback(() => {
-    emblaApi?.plugins().autoplay.play();
-  }, [emblaApi]);
+  // 2. Restart Logic: When component mounts (e.g., clicking 'back'), 
+  // wait 2 seconds then start the carousel.
+  useEffect(() => {
+    if (!emblaApi) return;
 
-  const handleMouseLeave = useCallback(() => {
-    emblaApi?.plugins().autoplay.stop();
+    const autoplay = emblaApi.plugins().autoplay;
+    if (!autoplay) return;
+
+    // Stop immediately on mount to ensure the 2s delay logic
+    autoplay.stop();
+
+    const timer = setTimeout(() => {
+      autoplay.play();
+    }, 2000);
+
+    return () => {
+      clearTimeout(timer);
+      autoplay.stop();
+    };
   }, [emblaApi]);
 
   const scrollPrev = useCallback(
@@ -64,32 +77,42 @@ export default function TrustedBuildersSection() {
   );
 
   return (
-    <section
-      className="bg-amber-50 relative py-16 px-4 overflow-hidden"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      <div className="mx-auto max-w-7xl space-y-10">
-        {/* Header Section */}
-        <div className="flex flex-col items-center text-center space-y-3">
-          <Badge
-            variant="secondary"
-            className="bg-rose-50 text-rose-600 border-rose-100 px-4 py-1 font-bold text-[10px] uppercase tracking-widest"
-          >
-            Verified Partners
-          </Badge>
-          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">
-            Work only with{" "}
-            <span className="text-rose-600">trusted builders</span>
-          </h2>
-          <p className="text-slate-500 max-w-xl text-base">
-           
-          </p>
+    <section className="bg-[#ffffff] relative py-3 px-0 mt-0 overflow-hidden">
+      <div className="mx-auto max-w-7xl px-0 py-0">
+        <div className="relative overflow-hidden rounded-3xl bg-[#EBE9D7] border border-[#eae3dd] px-6 py-2 md:px-12">
+          <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-rose-100/50 blur-3xl" />
+          
+          <div className="relative flex flex-col items-center text-center space-y-0">
+            <div className="space-y-2">
+              <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight">
+                Work only with 
+                <span className="text-primary relative ml-3 inline-block">
+                  TRUSTED BUILDERS
+                  <svg 
+                    className="absolute -bottom-5 left-0 w-full h-5 text-rose-400" 
+                    viewBox="0 0 100 20" 
+                    preserveAspectRatio="none"
+                  >
+                    <path 
+                      d="M5 2 Q 50 18 95 2" 
+                      stroke="currentColor" 
+                      strokeWidth="4" 
+                      strokeLinecap="round" 
+                      fill="transparent" 
+                    />
+                  </svg>
+                </span>
+              </h2>
+            </div>
+
+            <p className="text-slate-600 max-w-2xl text-base md:text-lg leading-relaxed pt-2">
+              We partner exclusively with RERA-approved developers with a proven track record.
+            </p>
+          </div>
         </div>
 
         {/* Carousel Container */}
         <div className="relative group/carousel px-2 lg:px-4">
-          {/* Navigation Buttons */}
           <button
             onClick={scrollPrev}
             className="absolute -left-2 top-1/2 -translate-y-1/2 z-20 p-2.5 rounded-full border border-slate-200 bg-white shadow-md hover:bg-rose-600 hover:text-white transition-all opacity-0 group-hover/carousel:opacity-100 hidden lg:flex"
@@ -97,23 +120,22 @@ export default function TrustedBuildersSection() {
             <ChevronLeft className="h-5 w-5" />
           </button>
 
-          {/* 1. Added containScroll: false to the hook in your component top for smoother looping */}
           <div className="overflow-hidden" ref={emblaRef}>
-            {/* 2. Changed 'gap-5' to '-ml-5' (Negative margin) */}
             <div className="flex -ml-5">
               {trustedBuilders.map((builder) => (
                 <div
                   key={builder.id}
-                  /* 3. Added 'pl-5' (Padding Left) to act as the gap. 
-             This ensures Embla treats the space as part of the slide, 
-             preventing the cards from touching during the loop jump. */
                   className="flex-[0_0_85%] md:flex-[0_0_48%] lg:flex-[0_0_23.8%] min-w-0 pl-5"
                 >
                   <Link
                     href={`/builders/${builder.id}`}
                     className="group block h-full py-4"
                   >
-                    <div className="relative flex flex-col h-full bg-white border border-slate-200/60 rounded-3xl shadow-sm hover:shadow-xl hover:border-rose-200 transition-all duration-500 hover:-translate-y-1.5">
+                    {/* SOLID BACKGROUND CARD */}
+                    <div 
+                      style={{ '--builder-color': builder.color || '#e11d48' } as React.CSSProperties}
+                      className="relative flex flex-col h-full bg-white border border-slate-200/60 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1.5 hover:border-[var(--builder-color)]"
+                    >
                       <CardHeader className="p-6 pb-0 space-y-4">
                         <div className="flex items-center justify-between">
                           <div className="h-14 w-14 rounded-2xl bg-slate-50 flex items-center justify-center border border-slate-100 shrink-0 overflow-hidden relative">
@@ -136,7 +158,7 @@ export default function TrustedBuildersSection() {
                         </div>
 
                         <div>
-                          <CardTitle className="text-lg font-bold text-slate-900 line-clamp-1">
+                          <CardTitle className="text-lg font-bold text-slate-900 line-clamp-1 transition-colors duration-300 group-hover:text-[var(--builder-color)]">
                             {builder.name}
                           </CardTitle>
                           <CardDescription className="flex items-center gap-1 text-slate-500 text-xs">
@@ -144,7 +166,6 @@ export default function TrustedBuildersSection() {
                           </CardDescription>
                         </div>
 
-                        {/* RESTORED: DYNAMIC BADGES */}
                         <div className="flex flex-wrap gap-2 pt-1">
                           {builder.trusted && (
                             <Badge
@@ -154,7 +175,6 @@ export default function TrustedBuildersSection() {
                               <ShieldCheck className="mr-1 h-3 w-3" /> RERA
                             </Badge>
                           )}
-
                           {builder.tag && (
                             <Badge className="text-[10px] py-0.5 px-2 bg-rose-100 text-rose-700 border-none font-bold uppercase tracking-wider">
                               {builder.tag}
@@ -169,7 +189,7 @@ export default function TrustedBuildersSection() {
                             <p className="text-[10px] text-slate-400 uppercase font-black tracking-widest">
                               Projects
                             </p>
-                            <p className="font-bold text-slate-800 text-lg">
+                            <p className="font-bold text-slate-800 text-lg transition-colors duration-300 group-hover:text-[var(--builder-color)]">
                               {builder.projects}+
                             </p>
                           </div>
@@ -177,7 +197,7 @@ export default function TrustedBuildersSection() {
                             <p className="text-[10px] text-slate-400 uppercase font-black tracking-widest">
                               Experience
                             </p>
-                            <p className="font-bold text-slate-800 text-lg">
+                            <p className="font-bold text-slate-800 text-lg transition-colors duration-300 group-hover:text-[var(--builder-color)]">
                               {builder.years}Y
                             </p>
                           </div>
@@ -185,9 +205,9 @@ export default function TrustedBuildersSection() {
                       </CardContent>
 
                       <CardFooter className="p-6 pt-0 mt-auto">
-                        <div className="w-full flex items-center justify-between text-xs font-bold text-rose-600 uppercase tracking-widest">
+                        <div className="w-full flex items-center justify-between text-xs font-bold text-slate-500 uppercase tracking-widest transition-colors duration-300 group-hover:text-[var(--builder-color)]">
                           <span>Portfolio</span>
-                          <div className="h-8 w-8 rounded-full border border-rose-100 flex items-center justify-center group-hover:bg-rose-600 group-hover:text-white transition-all duration-300">
+                          <div className="h-8 w-8 rounded-full border border-slate-100 flex items-center justify-center transition-all duration-300 group-hover:bg-[var(--builder-color)] group-hover:border-[var(--builder-color)] group-hover:text-white">
                             <ArrowRight className="h-4 w-4" />
                           </div>
                         </div>

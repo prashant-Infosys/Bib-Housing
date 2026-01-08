@@ -31,7 +31,7 @@ export default function FeaturedProperties() {
 
   return (
     <section 
-      className="py-16 bg-rose-50/50"
+      className="py-4 bg-rose-50/50"
       onMouseEnter={() => plugin.current.play()}
       onMouseLeave={() => plugin.current.stop()}
     >

@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { Camera, Maximize2, ChevronLeft, ChevronRight } from "lucide-react";
 
 type Props = {
   images: string[] | undefined;
@@ -14,53 +15,68 @@ export default function ImageGallery({
   alt = "property",
   className = "",
 }: Props) {
-  const [index, setIndex] = useState(0);
-
   if (!images || images.length === 0) {
     return (
       <div className={`w-full ${className}`}>
-        <div className="relative h-[420px] w-full bg-gray-100 flex items-center justify-center">
-          <span className="text-muted-foreground">No image</span>
+        <div className="relative h-[450px] w-full bg-slate-50 rounded-3xl flex flex-col items-center justify-center border-2 border-dashed border-slate-200">
+          <Camera className="h-12 w-12 text-slate-300 mb-3" />
+          <span className="text-slate-400 font-bold uppercase tracking-widest text-xs">No Photos Available</span>
         </div>
       </div>
     );
   }
 
-  const main = images[index] ?? images[0];
-
   return (
-    <div className={className}>
-      <div className="relative h-[420px] w-full rounded-lg overflow-hidden shadow">
-        <Image
-          src={main}
-          alt={`${alt} - ${index + 1}`}
-          fill
-          className="object-cover"
-        />
+    <div className={`space-y-4 ${className}`}>
+      {/* Mosaic Grid Layout */}
+      <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-3 h-[500px]">
+        
+        {/* Main Large Featured Image */}
+        <div className="md:col-span-2 md:row-span-2 relative group cursor-pointer overflow-hidden rounded-3xl shadow-lg border border-slate-100">
+          <Image
+            src={images[0]}
+            alt={`${alt} - Main`}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-all" />
+        </div>
+
+        {/* Smaller Side Images */}
+        {images.slice(1, 5).map((src, i) => (
+          <div 
+            key={i} 
+            className="hidden md:block relative group cursor-pointer overflow-hidden rounded-2xl shadow-md border-2 border-white"
+          >
+            <Image
+              src={src}
+              alt={`${alt} view ${i + 2}`}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+            {/* Overlay for the last image if there are more than 5 total */}
+            {i === 3 && images.length > 5 && (
+              <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px] flex flex-col items-center justify-center text-white">
+                <Maximize2 className="h-6 w-6 mb-1" />
+                <span className="text-sm font-black">+{images.length - 5} More</span>
+              </div>
+            )}
+            <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-all" />
+          </div>
+        ))}
       </div>
 
-      <div className="grid grid-cols-3 gap-3 mt-3">
-        {images.slice(0, 6).map((src, i) => {
-          const isActive = i === index;
-          return (
-            <button
-              key={src + i}
-              onClick={() => setIndex(i)}
-              aria-label={`Show image ${i + 1}`}
-              className={`relative h-28 rounded overflow-hidden shadow-sm focus:outline-none focus:ring-2 focus:ring-primary ${
-                isActive ? "ring-2 ring-offset-1 ring-primary" : ""
-              }`}
-              type="button"
-            >
-              <Image
-                src={src}
-                alt={`${alt} - ${i + 1}`}
-                fill
-                className="object-cover"
-              />
-            </button>
-          );
-        })}
+      {/* Mobile/Thumbnail Scroller */}
+      <div className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide snap-x">
+        {images.map((src, i) => (
+          <div
+            key={i}
+            className="relative flex-shrink-0 h-20 w-32 rounded-xl overflow-hidden cursor-pointer snap-start border-2 border-transparent hover:border-[#ff6b00] transition-all"
+          >
+            <Image src={src} alt="thumb" fill className="object-cover" />
+          </div>
+        ))}
       </div>
     </div>
   );

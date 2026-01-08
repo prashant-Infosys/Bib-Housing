@@ -76,11 +76,11 @@ const FEATURES: AssistancePoint[] = [
 export default function GetFreeAssistancePage() {
   return (
     <>
-      <BreadcrumbBanner
+      {/* <BreadcrumbBanner
         title="Personal Assistance"
         description="Tell us a bit about what you're looking for — we'll take care of the rest."
         items={[{ label: "Assistance", href: "/assistance" }]}
-      />
+      /> */}
 
       <section className="container mx-auto px-6 sm:px-8 lg:px-12 py-12">
         <div className="grid grid-cols-12 gap-8 items-start">

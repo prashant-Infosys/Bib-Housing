@@ -11,7 +11,10 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  /* Any other existing config you have should stay here */
+  // ADD THIS SECTION BELOW
+  experimental: {
+    serverComponentsExternalPackages: ["@prisma/client", "prisma"],
+  },
 };
 
 export default nextConfig;

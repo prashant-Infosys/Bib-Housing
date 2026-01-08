@@ -1,7 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { BedDouble, Bath, ShieldCheck, MapPin, Info, Shield } from "lucide-react";
+import {
+  BedDouble,
+  Bath,
+  ShieldCheck,
+  MapPin,
+  Info,
+  Shield,
+} from "lucide-react";
 import IKImage from "@/components/IKImage";
 
 type Props = {
@@ -31,7 +38,7 @@ export default function HeroClient({
   titleStyle,
   titleClassName,
   regId,
-  brandColor
+  brandColor,
 }: Props) {
   // Animation Variants
   const hoverReveal = {
@@ -46,18 +53,18 @@ export default function HeroClient({
 
   return (
     <section className="relative group">
-      <div className="rounded-lg overflow-hidden">
+      <div className="rounded-none overflow-hidden">
         <motion.div
           initial="initial"
           whileHover="hover" // Triggers children animations
-          className="relative h-64 sm:h-[500px] w-full cursor-default"
+          className="relative h-70 sm:h-[500px] w-full cursor-default"
         >
           <IKImage path={image} alt="back" w={1900} h={600} />
 
           <div className="absolute inset-0 bg-linear-to-r from-black/70 via-black/20 to-transparent transition-opacity duration-500 group-hover:opacity-90" />
 
           {/* Title Area */}
-          <div className="absolute left-6 top-6 sm:left-10 sm:top-10 max-w-xl text-white">
+          <div className="absolute left-6 top-32 sm:left-10 sm:top-24 max-w-xl text-white">
             <h1
               className={`font-black uppercase leading-[0.9] tracking-tighter text-5xl md:text-7xl ${
                 titleClassName || ""
@@ -73,24 +80,24 @@ export default function HeroClient({
 
             {/* DESCRIPTION: Updated to show full text on hover */}
             <motion.div
-  variants={hoverReveal}
-  transition={{ duration: 0.5, ease: "easeInOut" }}
-  className="overflow-hidden"
->
-  {description && (
-    <div 
-      className="mt-4 p-4 rounded-xl backdrop-blur-md border border-white/20 shadow-lg"
-      style={{ 
-        /* brandColor with roughly 80% opacity */
-        backgroundColor: `${brandColor}CC`, 
-      }}
-    >
-      <p className="text-sm md:text-base text-white font-medium leading-relaxed">
-        {description}
-      </p>
-    </div>
-  )}
-</motion.div>
+              variants={hoverReveal}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="overflow-hidden"
+            >
+              {description && (
+                <div
+                  className="mt-4 p-4 rounded-xl backdrop-blur-md border border-white/20 shadow-lg"
+                  style={{
+                    /* brandColor with roughly 80% opacity */
+                    backgroundColor: `${brandColor}CC`,
+                  }}
+                >
+                  <p className="text-sm md:text-base text-white font-medium leading-relaxed">
+                    {description}
+                  </p>
+                </div>
+              )}
+            </motion.div>
 
             <div className="mt-4 flex flex-wrap gap-2 items-center">
               {/* Location Badge (Always Visible) */}

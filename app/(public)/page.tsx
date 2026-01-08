@@ -1,6 +1,22 @@
+import React from "react";
+import Link from "next/link";
+import { 
+  Building2, 
+  DoorClosed, 
+  Home, 
+  User, 
+  Search, 
+  ArrowRight, 
+  CircleCheckBig,
+  Sparkles,
+  SearchCode,
+  LayoutDashboard
+} from "lucide-react";
+
 import HeroSection from "@/components/hero-section";
+import SearchBar from "@/components/search-bar"; // Added this
 import FeaturedProperties from "@/components/FeaturedProjects";
-import {  buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -9,15 +25,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Building2,
-  DoorClosed,
-  Home,
-  Sparkles,
-  User,
-} from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
 import TrustedBuildersSection from "@/components/TrustedBuildersSection";
 import FAQSection from "@/components/FAQSection";
 import Header from "@/components/Navbar/Header";
@@ -29,146 +36,110 @@ export default function HomePage() {
     <>
       <Header />
       <HeroSection />
-      <section className="relative py-16 px-4">
-        {/* soft tinted background */}
-        <div className="absolute inset-0 -z-10 bg-linear-to-b from-[#fff5f7] via-white to-[#ffe9ee]" />
+      
+      {/* Search Bar Integration */}
+      <SearchBar />
 
+      <section className="relative py-16 px-4 bg-[#fcfcfd]">
         <div className="mx-auto max-w-6xl">
-          {/* header */}
-          <div className="mb-8 flex flex-col items-center gap-3 text-center md:flex-row md:justify-between md:text-left">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-primary/80">
-                How we help
-              </p>
-              <h2 className="mt-1 text-2xl md:text-3xl font-semibold">
-                Choose how you want to find your next home
-              </h2>
-              <p className="mt-2 text-sm md:text-base text-muted-foreground max-w-xl">
-                Get guided assistance, search yourself with powerful filters, or
-                list your property to reach motivated buyers — all with verified
-                projects.
+          {/* Refined Section Header */}
+          <div className="mb-5 flex flex-col items-center text-center md:items-start md:text-left gap-4">
+            <div className="flex items-center gap-3">
+              <span className="h-[2px] w-6 bg-primary rounded-full"></span>
+              <p className="text-primary text-2xl font-black uppercase tracking-[0.2em]">
+                How it works 
               </p>
             </div>
-
-            <div className="mt-4 md:mt-0">
-              <Link
-                href="/assistance"
-                className={buttonVariants({
-                  className: "text-sm",
-                })}
-              >
-                Get Free Assistance
-              </Link>
-            </div>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
+              Your property journey, <span className="text-primary">simplified.</span>
+            </h2>
           </div>
 
-          {/* cards grid */}
+          {/* Cards Grid */}
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {/* Assistance card */}
-            <Card className="group flex flex-col h-full border border-primary/5 bg-white/95 shadow-sm transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg">
-              <CardHeader className="space-y-3">
-                <div className="flex items-start justify-between gap-2">
-                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-                    <User className="h-5 w-5" />
-                  </div>
-
-                  {/* <Badge className="bg-primary/10 text-primary">Free</Badge> */}
+            
+            {/* Card 1: Personal Assistance */}
+            <Card className="group relative flex flex-col h-full border-slate-200 bg-white transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)] hover:border-primary/50 overflow-hidden">
+              <CardHeader className="p-6 pb-4 space-y-4">
+                <div className="h-12 w-12 flex items-center justify-center rounded-2xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300 group-hover:rotate-6">
+                  <User className="h-6 w-6" />
                 </div>
-
-                <CardTitle className="text-lg font-semibold">
-                  Personal Assistance
-                </CardTitle>
-
-                <CardDescription className="text-xs text-muted-foreground">
-                  Hand-held help to shortlist, visit & negotiate — free of
-                  charge.
-                </CardDescription>
-
-                <div className="flex flex-wrap gap-2 pt-1">
-                  <span className="text-xs px-2 py-1 rounded bg-muted/40 text-muted-foreground">
-                    RERA-verified projects
-                  </span>
-                  <span className="text-xs px-2 py-1 rounded bg-muted/40 text-muted-foreground">
-                    Site visits
-                  </span>
+                <div>
+                  <CardTitle className="text-xl font-bold text-slate-900">Personal Assistance</CardTitle>
+                  <CardDescription className="text-xs font-bold text-slate-400 mt-1 uppercase tracking-wider">
+                    Hand-held Guidance
+                  </CardDescription>
                 </div>
               </CardHeader>
 
-              <CardContent className="flex-1 space-y-3 text-sm">
-                <ul className="space-y-2">
-                  <li className="flex items-center gap-3">
-                    <span className="inline-flex h-7 w-7 items-center justify-center rounded-md bg-primary/10 text-primary">
-                      <User className="h-4 w-4" />
-                    </span>
-                    Dedicated expert to guide you
-                  </li>
-
-                  <li className="flex items-center gap-3">
-                    <span className="inline-flex h-7 w-7 items-center justify-center rounded-md bg-primary/10 text-primary">
-                      <Home className="h-4 w-4" />
-                    </span>
-                    Curated, genuine listings
-                  </li>
-
-                  <li className="flex items-center gap-3">
-                    <span className="inline-flex h-7 w-7 items-center justify-center rounded-md bg-primary/10 text-primary">
-                      <DoorClosed className="h-4 w-4" />
-                    </span>
-                    Help with visits, negotiation & paperwork
-                  </li>
-                </ul>
+              <CardContent className="px-6 py-0 flex-1">
+                <ul className="space-y-3">
+  {[
+    { icon: <Sparkles />, text: "Dedicated Expert Guide" },
+    { icon: <Home />, text: "Verified Site Visits" },
+    { icon: <DoorClosed />, text: "Guidance on call or at your doorstep" }
+  ].map((item, i) => (
+    <li key={i} className="flex items-center gap-3 text-[14px] font-extrabold text-slate-700">
+      <span className="text-primary transition-transform group-hover:scale-110">
+        {/* The fix is the 'as React.ReactElement' casting below */}
+        {React.cloneElement(item.icon as React.ReactElement<any>, { 
+          className: "h-4 w-4" 
+        })}
+      </span>
+      {item.text}
+    </li>
+  ))}
+</ul>
               </CardContent>
 
-              <CardFooter className="pt-2">
-                <BookAppointment />
-              </CardFooter>
-            </Card>
-
-            {/* Search card */}
-            <Card className="group flex flex-col h-full border border-primary/5 bg-white/95 shadow-sm transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg">
-              <CardHeader className="space-y-3">
-                <div className="flex items-start justify-between gap-2">
-                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-                    <Home className="h-5 w-5" />
-                  </div>
-
-                  {/* <Badge className="bg-primary/10 text-primary">
-                    Self-serve
-                  </Badge> */}
-                </div>
-
-                <CardTitle className="text-lg font-semibold">
-                  Search Yourself
-                </CardTitle>
-
-                <CardDescription className="text-xs text-muted-foreground">
-                  Powerful filters, saved searches and map-based results.
-                </CardDescription>
-              </CardHeader>
-
-              <CardContent className="flex-1 flex flex-col items-center text-sm">
-                <div className="relative mb-3 h-24 w-24">
-                  {/* developer image path (local) — your infra will map /mnt/data/... to a url */}
-                  <Image
-                    src="/search.svg"
-                    alt="search illustration"
-                    fill
-                    className="object-contain"
-                  />
-                </div>
-
-                <p className="text-center text-sm text-muted-foreground max-w-xs">
-                  Browse curated listings with smart sorting and neighbourhood
-                  filters.
-                </p>
-              </CardContent>
-
-              <CardFooter className="pt-2">
+              <CardFooter className="p-6 pt-6">
                 <Link
                   href="/properties"
                   className={buttonVariants({
                     variant: "outline",
-                    className: "w-full text-sm",
+                    className: "w-full h-11 font-bold text-white border-2 bg-primary border-primary hover:border-primary hover:text-primary transition-all shadow-sm",
+                  })}
+                >
+                  Browse Properties
+                </Link>
+              </CardFooter> 
+            </Card>
+
+            {/* Card 2: Search Yourself */}
+            <Card className="group relative flex flex-col h-full border-slate-200 bg-white transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)] hover:border-blue-500 overflow-hidden">
+              <CardHeader className="p-6 pb-4 space-y-4">
+                <div className="h-12 w-12 flex items-center justify-center rounded-2xl bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 group-hover:rotate-6">
+                  <Search className="h-6 w-6" />
+                </div>
+                <div>
+                  <CardTitle className="text-xl font-bold text-slate-900">Search Yourself</CardTitle>
+                  <CardDescription className="text-xs font-bold text-slate-400 mt-1 uppercase tracking-wider">
+                    Self-Serve Platform
+                  </CardDescription>
+                </div>
+              </CardHeader>
+
+              <CardContent className="px-6 py-0 flex-1 flex flex-col items-center justify-center">
+                <div className="w-full h-24 bg-slate-50 rounded-xl border border-slate-200 p-3 flex flex-col gap-2 group-hover:border-blue-200 group-hover:bg-blue-50/30 transition-all">
+                  <div className="h-7 w-full bg-white rounded-lg border border-slate-200 flex items-center px-2 gap-2 shadow-sm">
+                    <Search className="h-3 w-3 text-blue-500" />
+                    <div className="h-1.5 w-20 bg-slate-100 rounded-full"></div>
+                  </div>
+                  <div className="flex gap-2">
+                    <div className="h-8 flex-1 bg-white rounded-lg border border-slate-100 flex items-center justify-center shadow-sm">
+                       <LayoutDashboard className="h-3 w-3 text-blue-400 mr-2" />
+                       <div className="h-1 w-8 bg-slate-100 rounded-full"></div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+
+              <CardFooter className="p-6 pt-6">
+                <Link
+                  href="/properties"
+                  className={buttonVariants({
+                    variant: "outline",
+                    className: "w-full h-11 font-bold text-white border-2 bg-blue-600 border-slate-200 hover:border-blue-600 hover:text-blue-600 transition-all shadow-sm",
                   })}
                 >
                   Browse Properties
@@ -176,70 +147,55 @@ export default function HomePage() {
               </CardFooter>
             </Card>
 
-            {/* List property card */}
-            <Card className="group flex flex-col h-full border border-primary/5 bg-white/95 shadow-sm transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg">
-              <CardHeader className="space-y-3">
-                <div className="flex items-start justify-between gap-2">
-                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-                    <Building2 className="h-5 w-5" />
-                  </div>
-
-                  {/* <Badge className="bg-primary/10 text-primary">
-                    Owners / Builders
-                  </Badge> */}
+            {/* Card 3: List Property */}
+            <Card className="group relative flex flex-col h-full border-slate-200 bg-white transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)] hover:border-orange-500 overflow-hidden">
+              <CardHeader className="p-6 pb-4 space-y-4">
+                <div className="h-12 w-12 flex items-center justify-center rounded-2xl bg-orange-50 text-orange-600 group-hover:bg-orange-600 group-hover:text-white transition-all duration-300 group-hover:rotate-6">
+                  <Building2 className="h-6 w-6" />
                 </div>
-
-                <CardTitle className="text-lg font-semibold">
-                  List Your Property
-                </CardTitle>
-
-                <CardDescription className="text-xs text-muted-foreground">
-                  Reach verified, assistance-ready buyers without random
-                  inquiries.
-                </CardDescription>
+                <div>
+                  <CardTitle className="text-xl font-bold text-slate-900">List Your Property</CardTitle>
+                  <CardDescription className="text-xs font-bold text-slate-400 mt-1 uppercase tracking-wider">
+                    Owner & Builder Hub
+                  </CardDescription>
+                </div>
               </CardHeader>
 
-              <CardContent className="flex-1 space-y-3 text-sm">
-                <ul className="space-y-2">
-                  <li className="flex items-center gap-3">
-                    <span className="inline-flex h-7 w-7 items-center justify-center rounded-md bg-primary/10 text-primary">
-                      <Sparkles className="h-4 w-4" />
-                    </span>
-                    Get matched with high-intent buyers
-                  </li>
-
-                  <li className="flex items-center gap-3">
-                    <span className="inline-flex h-7 w-7 items-center justify-center rounded-md bg-primary/10 text-primary">
-                      <Building2 className="h-4 w-4" />
-                    </span>
-                    Better visibility for RERA-approved projects
-                  </li>
-
-                  <li className="flex items-center gap-3">
-                    <span className="inline-flex h-7 w-7 items-center justify-center rounded-md bg-primary/10 text-primary">
-                      <Home className="h-4 w-4" />
-                    </span>
-                    Support for visits & closing
-                  </li>
+              <CardContent className="px-6 py-0 flex-1">
+                <ul className="space-y-3">
+                  {[
+                    "Verified Buyer Matches",
+                    "Premium Listing Visibility",
+                    "End-to-End Closing Help"
+                  ].map((text, i) => (
+                    <li key={i} className="flex items-center gap-3 text-[14px] font-extrabold text-slate-700">
+                      <CircleCheckBig className="h-5 w-5 text-orange-500 fill-orange-50 transition-transform group-hover:scale-110" />
+                      {text}
+                    </li>
+                  ))}
                 </ul>
               </CardContent>
 
-              <CardFooter className="pt-2">
+              <CardFooter className="p-6 pt-6">
                 <Link
                   href="/list-your-property"
-                  className={buttonVariants({ className: "w-full text-sm" })}
+                  className={buttonVariants({ 
+                    variant: "outline",
+                    className: "w-full h-11 font-bold text-white border-2 bg-orange-500 border-slate-200 hover:border-orange-600 hover:text-orange-600 transition-all shadow-sm" 
+                  })}
                 >
-                  List Your Property
+                  Start Listing
                 </Link>
               </CardFooter>
             </Card>
+
           </div>
         </div>
       </section>
+
       <FeaturedProperties />
       <TrustedBuildersSection />
       <FAQSection />
-
       <FooterSection />
     </>
   );
